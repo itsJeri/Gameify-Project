@@ -1,33 +1,40 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import LoginPage from './Components/LoginPage';
+import NavBar from './Components/NavBar';
+import MainPage from './Components/MainPage';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    fetch('/hello')
-      .then(r => r.json())
-      .then(data => setCount(data.count));
+    // auto-login
+    fetch('/me').then(r => {
+      if (r.ok) {
+        r.json().then(user => {
+          setUser(user)
+        });
+      }
+    });
   }, []);
 
+  if (!user) return <LoginPage setUser={setUser} />;
+
   return (
-    <Router>
-    <div className="App">
-      
+    <>
+      <NavBar user={user} setUser={setUser}/>
+      <main>
         <Routes>
-          <Route 
-            path='/testing'
-            element={<h1>Test Route</h1>}  
-          />
-          <Route 
+          <Route
             path='/'
-            element={<h1>Page Count: {count}</h1>}  
+            element={<MainPage />}
           />
         </Routes>
-    
-    </div>
-    </Router>
+      </main>
+    </>
   );
 }
 
