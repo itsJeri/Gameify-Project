@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
 function App() {
@@ -11,9 +12,22 @@ function App() {
   }, []);
 
   return (
+    <Router>
     <div className="App">
-      <h1>Page Count: {count}</h1>
+      
+        <Routes>
+          <Route 
+            path='/testing'
+            element={<h1>Test Route</h1>}  
+          />
+          <Route 
+            path='/'
+            element={<h1>Page Count: {count}</h1>}  
+          />
+        </Routes>
+    
     </div>
+    </Router>
   );
 }
 
