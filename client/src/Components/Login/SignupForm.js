@@ -102,4 +102,4 @@ function SignupForm({ setUser, setShowLogin }) {
   )
 }
 
-export default SignupForm
+export default SignupForm;

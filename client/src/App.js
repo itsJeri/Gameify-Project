@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import LoginPage from './Components/LoginPage';
 import NavBar from './Components/NavBar';
-import MainPage from './Components/MainPage';
+import Gameify from './Components/Gameify';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -27,12 +27,7 @@ function App() {
     <>
       <NavBar user={user} setUser={setUser}/>
       <main>
-        <Routes>
-          <Route
-            path='/'
-            element={<MainPage />}
-          />
-        </Routes>
+        <Gameify />
       </main>
     </>
   );

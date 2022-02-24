@@ -18,17 +18,18 @@ function NavBar({ user, setUser }) {
       <Navbar bg="light" expand="lg" id="navbar">
         <Container id="navbar">
           <Navbar.Brand className="nav-logo" href="#home">
-            <p>Logo</p>
+            <p>GAMEIFY</p>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav"/>
           <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
              <Nav.Link as={Link} to={'/'}>Home</Nav.Link>
              <Nav.Link as={Link} to={'/dashboard'}>Dashboard</Nav.Link>
+             <Nav.Link as={Link} to={'/games'}>Games</Nav.Link>
           </Nav>
           </Navbar.Collapse>
-          <Navbar.Text id="navbar">
-             {user.username}
+          <Navbar.Text id="navbar-text">
+             Hi, {user.username}
           </Navbar.Text>
           <Button variant="primary" onClick={handleLogout}>
              Logout
@@ -39,4 +40,4 @@ function NavBar({ user, setUser }) {
   )
 }
 
-export default NavBar
+export default NavBar;

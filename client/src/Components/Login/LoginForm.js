@@ -81,4 +81,4 @@ function LoginForm({ setUser, setShowLogin }) {
   )
 }
 
-export default LoginForm
+export default LoginForm;

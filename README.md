@@ -22,3 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+Welcome to Gameify! This project is intended to be a sandbox for me to explore new concepts, frameworks, or libraries, and to show off what I've learned by game-ifying them!
