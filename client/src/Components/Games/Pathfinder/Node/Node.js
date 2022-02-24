@@ -1,9 +1,20 @@
-import React from 'react'
+import { useState } from 'react';
 
-function Node() {
+import './Node.css';
+
+function Node({ isStart, isFinish }) {
+
+  const nodeClass = isFinish ?
+    'node-finish' :
+    isStart ?
+    'node-start' :
+    ''
+
   return (
-    <div>Node</div>
+    <div 
+      className={`node ${nodeClass}`}
+    />
   )
 }
 
-export default Node
+export default Node;
