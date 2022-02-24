@@ -4,29 +4,46 @@ import Node from './Node/Node';
 import './Pathfinder.css';
 
 function Pathfinder() {
-  const [nodes, setNodes] = useState([]);
+  const [grid, setGrid] = useState([]);
+
+  const START_NODE_ROW = 10;
+  const START_NODE_COL = 15;
+  const FINISH_NODE_ROW = 10;
+  const FINISH_NODE_COL = 35;
 
   useEffect(() => {
-    const nodesArr = [];
-    for (let row = 0; row < 15; row++) {
+    getGrid()
+  }, []);
+
+  const getGrid = () => {
+    // Generate a grid of rows and columns
+    const gridArr = [];
+    for (let row = 0; row < 20; row++) {
       const currentRow = [];
       for (let col = 0; col < 50; col++) {
-        const currentNode = {
-          col,
+        // set properties of current row/col
+        const currentLocation = {
           row,
-          isStart: row === 10 && col === 5,
-          isFinish: row === 10 && col === 45
+          col,
+          distance: Infinity,
+          isVisited: false,
+          isWall: false,
+          previousNode: null,
+          // only true if conditions are met
+          isStart: row === START_NODE_ROW && col === START_NODE_COL,
+          isFinish: row === FINISH_NODE_ROW && col === FINISH_NODE_COL
         };
-        currentRow.push(currentNode);
+        currentRow.push(currentLocation);
       }
-      nodesArr.push(currentRow);
+      gridArr.push(currentRow);
     }
-    setNodes(nodesArr);
-  }, []);
+    setGrid(gridArr)
+  }
 
   return (
     <div className='grid'>
-      {nodes.map((row, rowId) => {
+      {/* Iterate through every row and column and create a node */}
+      {grid.map((row, rowId) => {
         return (
           <div key={rowId}>
             {row.map((node, nodeId) => {
@@ -34,9 +51,9 @@ function Pathfinder() {
               return (
                 <Node 
                   key={nodeId} 
+                  id={nodeId}
                   isStart={isStart}
                   isFinish={isFinish}
-                  
                 />
               )
             })}

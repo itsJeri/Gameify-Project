@@ -2,8 +2,9 @@ import { useState } from 'react';
 
 import './Node.css';
 
-function Node({ isStart, isFinish }) {
+function Node({ id, isStart, isFinish }) {
 
+  // Handle Start & Finish Nodes
   const nodeClass = isFinish ?
     'node-finish' :
     isStart ?
@@ -13,7 +14,7 @@ function Node({ isStart, isFinish }) {
   return (
     <div 
       className={`node ${nodeClass}`}
-    />
+    >{id}</div>
   )
 }
 
