@@ -45,8 +45,10 @@ export function dijkstra(grid, startNode, finishNode) {
   while (!!unvisitedNodes.length) {
     sortNodesByDistance(unvisitedNodes);
     const closestNode = unvisitedNodes.shift();
+    // skip if wall
     if (closestNode.isWall) continue;
-    if (closestNode.idstance === Infinity) {
+    // stop if the path is impossible
+    if (closestNode.distance === Infinity) {
       return visitedNodesOrdered;
     }
     closestNode.isVisited = true;

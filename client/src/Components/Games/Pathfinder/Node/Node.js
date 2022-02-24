@@ -2,21 +2,25 @@ import { useState } from 'react';
 
 import './Node.css';
 
-function Node({ id, isStart, isFinish, isVisited }) {
+function Node({ row, col, isStart, isFinish, isWall, onMouseDown, onMouseEnter, onMouseUp }) {
 
   // Handle Start & Finish Nodes
   const nodeClass = isFinish ?
     'node-finish' :
     isStart ?
     'node-start' :
-    isVisited ?
-    'node-visited' :
+    isWall ?
+    'node-wall' :
     '';
 
   return (
     <div 
+      id={`node-${row}-${col}`}
       className={`node ${nodeClass}`}
-    ></div>
+      onMouseEnter={() => onMouseEnter(row, col)}
+      onMouseDown={() => onMouseDown(row, col)}
+      onMouseUp={() => onMouseUp()}
+    />
   )
 }
 
