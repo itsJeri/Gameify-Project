@@ -7,7 +7,7 @@ import './Pathfinder.css';
 function PathfinderSandbox({ setPage }) {
   const [grid, setGrid] = useState([]);
   const [mousePressed, setMousePressed] = useState(false);
-  const [shortestPath, setShortestPath] = useState(Infinity);
+  const [shortestPath, setShortestPath] = useState(0);
 
   const START_NODE_ROW = 5;
   const START_NODE_COL = 5;
@@ -27,7 +27,7 @@ function PathfinderSandbox({ setPage }) {
       const currentRow = [];
       for (let col = 0; col < 30; col++) {
         // set properties of current row/col
-        const currentLocation = {
+        const currentNode = {
           row,
           col,
           distance: Infinity,
@@ -38,7 +38,7 @@ function PathfinderSandbox({ setPage }) {
           isStart: row === START_NODE_ROW && col === START_NODE_COL,
           isFinish: row === FINISH_NODE_ROW && col === FINISH_NODE_COL
         };
-        currentRow.push(currentLocation);
+        currentRow.push(currentNode);
       }
       grid.push(currentRow);
     }
@@ -57,23 +57,29 @@ function PathfinderSandbox({ setPage }) {
   }
 
   function resetGrid() {
-   
+    setShortestPath(0);
+    // reset grid and node properties
+    setGrid(getGrid());
+    // get all nodes
+      getNodes().forEach(node => {
+      if (node.isStart) {
+        document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-start'
+      } else if (node.isFinish) {
+        document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-finish'
+      } else {
+        document.getElementById(`node-${node.row}-${node.col}`).className = 'node';
+      }
+    })
+  }
+
+  function getNodes() {
     const nodes = [];
     for (const row of grid) {
       for (const node of row) {
         nodes.push(node);
       }
     }
-    getGrid();
-    nodes.forEach(node => {
-      if (node.isStart === true) {
-        document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-start'
-      } else if (node.isFinish === true) {
-        document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-finish'
-      } else {
-        document.getElementById(`node-${node.row}-${node.col}`).className = 'node';
-      }
-    })
+    return nodes;
   }
 
   // HANDLE CLICKS
@@ -113,6 +119,8 @@ function PathfinderSandbox({ setPage }) {
       }
       setTimeout(() => {
         const node = visitedNodesOrdered[i];
+        // Keep start and finish nodes displayed during visualization
+        if (node.isStart || node.isFinish) return;
         document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-visited';
       }, 10 * i);
     }
