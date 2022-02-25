@@ -56,8 +56,6 @@ function PathfinderSandbox({ setPage }) {
     return newGrid;
   }
 
-  // fix
-
   function resetGrid() {
     setShortestPath(0);
     // reset grid and node properties
