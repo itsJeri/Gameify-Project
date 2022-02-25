@@ -1,15 +1,32 @@
 .App {
   text-align: center;
-  background-color: black;
 }
+
+#root {
+  background-color: #0b0c10;
+  color: #c5c6c7;
+}
+
+html {
+  background-color: #0b0c10;
+}
+
+/* main {
+  background-color: #0b0c10;
+} */
 
 /* NAVBAR */
 #navbar {
-  background-color: #f1f1f1 !important;
+  background-color: #1f2833 !important;
+}
+
+#nav-logo {
+  color: #c5c6c7;
 }
 
 #navbar-text {
   margin-right: 5%;
+  color: #c5c6c7;
 }
 
 /* LOGIN & SIGNUP FORM */
@@ -21,9 +38,12 @@ form {
 #form-container {
   place-items: center;
   margin-top: 160px;
+  background-color: #0b0c10;
 }
 
 #login-form {
+  color: #c5c6c7;
+  background-color: #1f2833;
   max-width: 400px;
 }
 
@@ -47,7 +67,8 @@ form {
   height: 35rem;
   width: 50%;
   margin: auto;
-  margin-top: 3rem;
+  padding-top: 2em;
+  margin-top: 3em;
 }
 
 /* GAME PAGE */

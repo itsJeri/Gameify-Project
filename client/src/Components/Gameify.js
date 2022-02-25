@@ -54,7 +54,14 @@ function Gameify() {
         path='/games'
         element={<GamesPage games={games} regex={regex} />}
       />
-      {gameRoutes}
+      <Route
+        path={'/games/pathfinder'}
+        element={<Pathfinder />}
+      />
+      <Route 
+        path={'/games/number-memory'}
+        element={<NumberMemory />}
+      />
     </Routes>
   )
 }

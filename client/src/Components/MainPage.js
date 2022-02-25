@@ -47,7 +47,7 @@ function MainPage({ games }) {
 
   return (
     <>
-      <div className='home-container'>
+    <div className='home-container'>
         <h3>Leaderboards</h3>
         {isLoading ?
           <p>Loading scores...</p> :
@@ -55,7 +55,7 @@ function MainPage({ games }) {
           {leaderboard}
           </Tabs>
         }
-      </div>
+    </div>
     </>
   )
 }
