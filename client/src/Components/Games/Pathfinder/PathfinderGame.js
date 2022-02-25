@@ -7,7 +7,8 @@ import './Pathfinder.css';
 function PathfinderGame({ setPage }) {
   const [grid, setGrid] = useState([]);
   const [mousePressed, setMousePressed] = useState(false);
-  const [shortestPath, setShortestPath] = useState(Infinity);
+  const [shortestPath, setShortestPath] = useState(0);
+  const [userPath, setUserPath] = useState(0);
 
   const START_NODE_ROW = 5;
   const START_NODE_COL = 5;
@@ -15,27 +16,9 @@ function PathfinderGame({ setPage }) {
   const FINISH_NODE_COL = 11;
 
   useEffect(() => {
-    getGrid()
+    const grid = getGrid();
+    setGrid(grid)
   }, []);
-
-  function resetGrid() {
-    const nodes = [];
-    for (const row of grid) {
-      for (const node of row) {
-        nodes.push(node);
-      }
-    }
-    getGrid();
-    nodes.forEach(node => {
-      if (node.isStart === true) {
-        document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-start'
-      } else if (node.isFinish === true) {
-        document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-finish'
-      } else {
-        document.getElementById(`node-${node.row}-${node.col}`).className = 'node';
-      }
-    })
-  }
 
   // GRIDS
   function getGrid() {
@@ -45,44 +28,88 @@ function PathfinderGame({ setPage }) {
       const currentRow = [];
       for (let col = 0; col < 15; col++) {
         // set properties of current row/col
-        const currentLocation = {
+        const currentNode = {
           row,
           col,
           distance: Infinity,
           isVisited: false,
           isWall: false,
+          isUser: false,
           previousNode: null,
           // only true if conditions are met
           isStart: row === START_NODE_ROW && col === START_NODE_COL,
           isFinish: row === FINISH_NODE_ROW && col === FINISH_NODE_COL
         };
-        currentRow.push(currentLocation);
+        currentRow.push(currentNode);
       }
       grid.push(currentRow);
     }
-    setGrid(grid)
+    return grid;
   }
 
-  function getNewGridWithWallToggled(grid, row, col) {
+  function getNewGridWithUserToggled(grid, row, col) {
     const newGrid = grid.slice();
     const node = newGrid[row][col];
     const newNode = {
       ...node,
-      isWall: !node.isWall
+      isUser: !node.isUser
     };
     newGrid[row][col] = newNode;
     return newGrid;
   }
 
+  function resetGrid() {
+    setShortestPath(0);
+    setUserPath(0);
+    // reset grid and node properties
+    setGrid(getGrid());
+    // reset node visuals
+    getNodes().forEach(node => {
+      if (node.isStart) {
+        document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-start'
+      } else if (node.isFinish) {
+        document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-finish'
+      } else {
+        document.getElementById(`node-${node.row}-${node.col}`).className = 'node';
+      }
+    })
+  }
+
+  function getNodes() {
+    const nodes = [];
+    for (const row of grid) {
+      for (const node of row) {
+        nodes.push(node);
+      }
+    }
+    return nodes;
+  }
+
+  function getUserNodes() {
+    const userNodes = []
+    getNodes().forEach(node => {
+      if (document.getElementById(`node-${node.row}-${node.col}`).className.includes('node-user')) {
+        userNodes.push(node)
+      }
+    })
+    return userNodes;
+  }
+
+  // HANDLE SUBMIT
+  function handleSubmit() {
+    visualizeDijkstra();
+    setUserPath(getUserNodes().length)
+  }
+
   // HANDLE CLICKS
   function handleMouseEnter(row, col) {
     if (!mousePressed) return;
-    const newGrid = getNewGridWithWallToggled(grid, row, col);
+    const newGrid = getNewGridWithUserToggled(grid, row, col);
     setGrid(newGrid);
   }
 
   function handleMouseDown(row, col) {
-    const newGrid = getNewGridWithWallToggled(grid, row, col);
+    const newGrid = getNewGridWithUserToggled(grid, row, col);
     setGrid(newGrid);
     setMousePressed(true);
   }
@@ -111,6 +138,8 @@ function PathfinderGame({ setPage }) {
       }
       setTimeout(() => {
         const node = visitedNodesOrdered[i];
+        // Keep start, finish, and user nodes rendered during visualization
+        if (node.isUser || node.isStart || node.isFinish) return;
         document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-visited';
       }, 10 * i);
     }
@@ -131,18 +160,19 @@ function PathfinderGame({ setPage }) {
       <button onClick={() => setPage('PathfinderSandbox')}>
         Sandbox Mode
       </button>
-      <button onClick={() => visualizeDijkstra()}>
-        Run Dijkstra's Algorithm
+      <button onClick={() => handleSubmit()}>
+        Submit
       </button>
       <button onClick={() => resetGrid()}>Clear</button>
       <p>Shortest Path: {shortestPath}</p>
+      <p>Your Path: {userPath}</p>
       <div className='grid'>
         {/* Iterate through every row and column and create a node */}
         {grid.map((row, rowId) => {
           return (
             <div key={rowId}>
               {row.map((node, nodeId) => {
-                const {row, col, isStart, isFinish, isWall} = node;
+                const {row, col, isStart, isFinish, isWall, isUser} = node;
                 return (
                   <Node 
                     key={nodeId} 
@@ -151,6 +181,7 @@ function PathfinderGame({ setPage }) {
                     isStart={isStart}
                     isFinish={isFinish}
                     isWall={isWall}
+                    isUser={isUser}
                     mousePressed={mousePressed}
                     onMouseEnter={(row, col) => handleMouseEnter(row, col)}
                     onMouseDown={(row, col) => handleMouseDown(row, col)}
