@@ -65,7 +65,7 @@ export function getNodesInShortestPathOrder(finishNode) {
   const nodesInShortestPathOrder = [];
   let currentNode = finishNode;
   while (currentNode !== null) {
-    // Backtracks from finish node through previous nodes, adding each node to array
+    // Backtracks from finish node through previous nodes, adding each node to beginning of array
     nodesInShortestPathOrder.unshift(currentNode);
     currentNode = currentNode.previousNode;
   }
