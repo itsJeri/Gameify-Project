@@ -6,14 +6,33 @@
   margin-bottom: -4px;
 }
 
+.node-start {
+  background-color: rgb(0, 130, 0);
+}
+
 .node-finish {
+  background-color: rgb(130, 0, 0);
+}
+
+.node-user {
+  background-color: white;
+}
+
+/* When user selects start node */
+.node-start.node-user {
+  background-color: rgb(0, 255, 0);
+}
+
+/* When user selects finish node */
+.node-finish.node-user {
   background-color: red;
 }
 
-.node-start {
-  background-color: rgb(0, 211, 0);
+.node-wall {
+  background-color: rgb(12, 53, 71);
 }
 
+/* Animate Running Dijkstra's */
 .node-visited {
   animation-name: visitedAnimation;
   animation-duration: 1.5s;
@@ -47,14 +66,7 @@
   }
 }
 
-.node-wall {
-  background-color: rgb(12, 53, 71);
-}
-
-.node-user {
-  background-color: white;
-}
-
+/* Animate Dijkstra's Result */
 .node-shortest-path {
   animation-name: shortestPath;
   animation-duration: 1.5s;

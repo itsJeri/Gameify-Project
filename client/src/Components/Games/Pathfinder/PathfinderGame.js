@@ -10,8 +10,7 @@ function PathfinderGame({ setPage }) {
   const [shortestPath, setShortestPath] = useState(0);
   const [userScore, setUserScore] = useState(0);
   const [userPath, setUserPath] = useState([]);
-  const [startNode, setStartNode] = useState({});
-  const [finishNode, setFinishNode] = useState({});
+  const [atFinish, setAtFinish] = useState(false);
 
   const START_NODE_ROW = 5;
   const START_NODE_COL = 5;
@@ -22,10 +21,6 @@ function PathfinderGame({ setPage }) {
   useEffect(() => {
     const grid = getGrid();
     setGrid(grid)
-    setUserPath([grid[START_NODE_ROW][START_NODE_COL]])
-
-    setStartNode(grid[START_NODE_ROW][START_NODE_COL])
-    setFinishNode(grid[FINISH_NODE_ROW][FINISH_NODE_COL])
   }, []);
 
   // GRIDS
@@ -59,11 +54,11 @@ function PathfinderGame({ setPage }) {
   function getNewGridWithUserToggled(grid, row, col) {
     const newGrid = grid.slice();
     const node = newGrid[row][col];
+    const isSelected = grid[row][col].isUser
     const newNode = {
       ...node,
       isUser: !node.isUser,
-      // FIX LATER
-      previousUserNode: userPath[0]
+      previousUserNode: isSelected ? null : userPath[0]
     };
     newGrid[row][col] = newNode;
     return newGrid;
@@ -96,16 +91,6 @@ function PathfinderGame({ setPage }) {
     return nodes;
   }
 
-  function getUserNodes() {
-    const userNodes = []
-    getNodes().forEach(node => {
-      if (document.getElementById(`node-${node.row}-${node.col}`).className.includes('node-user')) {
-        userNodes.push(node)
-      }
-    })
-    return userNodes;
-  }
-
   function getNeighbors(row, col) {
     const neighbors = [];
     // conditionals to identify and push all current node's neighbors to array
@@ -122,62 +107,41 @@ function PathfinderGame({ setPage }) {
     setUserScore(userPath.length)
   }
 
-  // HANDLE CLICKS
-  function handleMouseEnter(row, col, node) {
-    if (!mousePressed) return;
-    // return array of neighboring start or user nodes
+  // HANDLE USER SELECTION LOGIC
+  function handleUserSelect(row, col) {
+    const node = grid[row][col]
+    // return array of neighboring start and user nodes
     const neighbors = getNeighbors(row, col).filter(neighbor => neighbor.isStart || neighbor.isUser);
-
     // CONDITIONALS
     const nodeIsSelected = node.isUser
-    const unselectedNodeTouchesPrevious = JSON.stringify(neighbors).includes(JSON.stringify(userPath[0]))
+    const unselectedNodeTouchesPrevious = JSON.stringify(neighbors).includes(JSON.stringify(userPath[0])) || node.isStart
     const selectedNodeTouchesPrevious = node.previousUserNode === userPath[1]
-    // SELECT
-    if (!nodeIsSelected && unselectedNodeTouchesPrevious) {
+    const isFinish = userPath[0] === grid[FINISH_NODE_ROW][FINISH_NODE_COL]
+    //SELECT
+    if (!nodeIsSelected && unselectedNodeTouchesPrevious && !isFinish) {
       const newGrid = getNewGridWithUserToggled(grid, row, col);
       setGrid(newGrid);
-      node.isUser = true
-      node.previousUserNode = userPath[0]
-
-      userPath.unshift(node)
-      console.log(userPath)
-    } 
+      setMousePressed(true);
+      setUserPath([newGrid[row][col], ...userPath])
+    }
     // UNSELECT
     else if (nodeIsSelected && selectedNodeTouchesPrevious) {
       const newGrid = getNewGridWithUserToggled(grid, row, col);
       setGrid(newGrid);
       setMousePressed(true);
-      userPath.shift(node)
-      console.log(userPath)
+      // remove first item from array
+      setUserPath(userPath.filter((n, i) => i !== 0))
     }
   }
 
-  function handleMouseDown(row, col, node) {
-    // return array of neighboring start or user nodes
-    const neighbors = getNeighbors(row, col).filter(neighbor => neighbor.isStart || neighbor.isUser);
-    // CONDITIONALS
-    const nodeIsSelected = node.isUser
-    const unselectedNodeTouchesPrevious = JSON.stringify(neighbors).includes(JSON.stringify(userPath[0]))
-    const selectedNodeTouchesPrevious = node.previousUserNode === userPath[1]
-    const atFinish = !(neighbors.includes(finishNode)) && node !== (finishNode)
-    //SELECT
-    if (!nodeIsSelected && unselectedNodeTouchesPrevious && atFinish) {
-      const newGrid = getNewGridWithUserToggled(grid, row, col);
-      setGrid(newGrid);
-      setMousePressed(true);
-      node.isUser = true
-      node.previousUserNode = userPath[0]
-      userPath.unshift(node)
-      console.log(userPath)
-    }
-    // UNSELECT
-    else if (nodeIsSelected && selectedNodeTouchesPrevious) {
-      const newGrid = getNewGridWithUserToggled(grid, row, col);
-      setGrid(newGrid);
-      setMousePressed(true);
-      userPath.shift(node)
-      console.log(userPath)
-    }
+  // HANDLE CLICKS
+  function handleMouseEnter(row, col) {
+    if (!mousePressed) return;
+    handleUserSelect(row, col)
+  }
+
+  function handleMouseDown(row, col) {
+    handleUserSelect(row, col)
   }
 
   function handleMouseUp() {
