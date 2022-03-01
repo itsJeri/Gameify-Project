@@ -52,7 +52,7 @@ function PathfinderSandbox({ setPage }) {
   }
 
   function getNewGridWithWallToggled(grid, row, col) {
-    const newGrid = grid.slice();
+    const newGrid = [...grid];
     const node = newGrid[row][col];
     const newNode = {
       ...node,
@@ -88,17 +88,25 @@ function PathfinderSandbox({ setPage }) {
     return nodes;
   }
 
+  // HANDLE WALL LOGIC
+  function handleWall(row, col) {
+    const node = grid[row][col]
+    const nodeIsStartOrFinish = node.isStart || node.isFinish
+    if (!nodeIsStartOrFinish) {
+      const newGrid = getNewGridWithWallToggled(grid, row, col);
+      setGrid(newGrid);
+      setMousePressed(true);
+    }
+  }
+
   // HANDLE CLICKS
   function handleMouseEnter(row, col) {
     if (!mousePressed) return;
-    const newGrid = getNewGridWithWallToggled(grid, row, col);
-    setGrid(newGrid);
+    handleWall(row, col);
   }
 
   function handleMouseDown(row, col) {
-    const newGrid = getNewGridWithWallToggled(grid, row, col);
-    setGrid(newGrid);
-    setMousePressed(true);
+    handleWall(row, col);
   }
 
   function handleMouseUp() {

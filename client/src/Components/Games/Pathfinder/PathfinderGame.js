@@ -36,8 +36,8 @@ function PathfinderGame({ setPage, handleScoreSubmit }) {
     for (let row = 0; row < gridRow; row++) {
       const currentRow = [];
       for (let col = 0; col < gridCol; col++) {
-        const startNode = row === START_NODE_ROW && col === START_NODE_COL
-        const finishNode = row === FINISH_NODE_ROW && col === FINISH_NODE_COL
+        const isStartNode = row === START_NODE_ROW && col === START_NODE_COL
+        const isFinishNode = row === FINISH_NODE_ROW && col === FINISH_NODE_COL
         // set properties of current row/col
         const currentNode = {
           row,
@@ -49,8 +49,8 @@ function PathfinderGame({ setPage, handleScoreSubmit }) {
           previousNode: null,
           previousUserNode: null,
           // only true if conditions are met
-          isStart: startNode,
-          isFinish: finishNode
+          isStart: isStartNode,
+          isFinish: isFinishNode
         };
         currentRow.push(currentNode);
       }
@@ -76,7 +76,7 @@ function PathfinderGame({ setPage, handleScoreSubmit }) {
   }
 
   function getNewGridWithUserToggled(grid, row, col) {
-    const newGrid = grid.slice();
+    const newGrid = [...grid];
     const node = newGrid[row][col];
     const isSelected = grid[row][col].isUser
     const newNode = {
@@ -144,7 +144,8 @@ function PathfinderGame({ setPage, handleScoreSubmit }) {
       setMousePressed(true);
       setUserPath([newGrid[row][col], ...userPath]);
       // handle atFinish
-      if (grid[FINISH_NODE_ROW][FINISH_NODE_COL].isUser) setAtFinish(true);
+      const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL]
+      if (finishNode.isUser) setAtFinish(true);
     }
     // UNSELECT
     else if (nodeIsSelected && selectedNodeTouchesPrevious) {
@@ -214,8 +215,8 @@ function PathfinderGame({ setPage, handleScoreSubmit }) {
     setSubmitted(true);
     setAtFinish(false);
     setUserScore(userScore + 1)
-    // setGridRow(gridRow + 1);
-    // setGridCol(gridCol + 1);
+    setGridRow(gridRow + 1);
+    setGridCol(gridCol + 1);
   } 
 
   function handleScore() {
