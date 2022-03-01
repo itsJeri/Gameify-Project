@@ -6,7 +6,7 @@ import GamesPage from './GamesPage';
 import Pathfinder from './Games/Pathfinder/Pathfinder';
 import NumberMemory from './Games/NumberMemory';
 
-function Gameify() {
+function Gameify({ user }) {
   const [games, setGames] = useState([]);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ function Gameify() {
       <Route
         key={game.id}
         path={`/games/${urlName}`}
-        element={<GameComponent />}
+        element={<GameComponent game={game} user={user}/>}
       />
     )
   })
@@ -54,14 +54,15 @@ function Gameify() {
         path='/games'
         element={<GamesPage games={games} regex={regex} />}
       />
-      <Route
+      {gameRoutes}
+      {/* <Route
         path={'/games/pathfinder'}
         element={<Pathfinder />}
       />
       <Route 
         path={'/games/number-memory'}
         element={<NumberMemory />}
-      />
+      /> */}
     </Routes>
   )
 }

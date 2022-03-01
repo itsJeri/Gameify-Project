@@ -3,16 +3,22 @@ import Node from './Node/Node';
 import { dijkstra, getNodesInShortestPathOrder } from './dijkstra/dijkstra';
 
 import './Pathfinder.css';
+import { Button } from 'react-bootstrap';
 
 function PathfinderSandbox({ setPage }) {
   const [grid, setGrid] = useState([]);
   const [mousePressed, setMousePressed] = useState(false);
-  const [shortestPath, setShortestPath] = useState(0);
+  const [shortestPath, setShortestPath] = useState([]);
 
   const START_NODE_ROW = 5;
   const START_NODE_COL = 5;
   const FINISH_NODE_ROW = 15;
   const FINISH_NODE_COL = 25;
+
+  const gridSize = {
+    row: 20,
+    col: 30
+  }
 
   useEffect(() => {
     const grid = getGrid();
@@ -23,9 +29,9 @@ function PathfinderSandbox({ setPage }) {
   function getGrid() {
     // Generate a grid of rows and columns
     const grid = [];
-    for (let row = 0; row < 20; row++) {
+    for (let row = 0; row < gridSize.row; row++) {
       const currentRow = [];
-      for (let col = 0; col < 30; col++) {
+      for (let col = 0; col < gridSize.col; col++) {
         // set properties of current row/col
         const currentNode = {
           row,
@@ -57,7 +63,7 @@ function PathfinderSandbox({ setPage }) {
   }
 
   function resetGrid() {
-    setShortestPath(0);
+    setShortestPath([]);
     // reset grid and node properties
     setGrid(getGrid());
     // get all nodes
@@ -133,46 +139,51 @@ function PathfinderSandbox({ setPage }) {
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
     animateDijkstra(visitedNodesOrdered, nodesInShortestPathOrder);
     // display shortest path as number
-    setShortestPath(nodesInShortestPathOrder.length)
+    setShortestPath(nodesInShortestPathOrder)
   }
 
   return (
-    <>
+    <div className = 'd-grid gap-2'>
       <button onClick={() => setPage('PathfinderGame')}>
-        Return to Game
+        Return to Pathfinder
       </button>
-      <button onClick={() => visualizeDijkstra()}>
-        Run Dijkstra's Algorithm
-      </button>
-      <button onClick={() => resetGrid()}>Clear</button>
-      <p>Shortest Path: {shortestPath}</p>
-      <div className='grid'>
-        {/* Iterate through every row and column and create a node */}
-        {grid.map((row, rowId) => {
-          return (
-            <div key={rowId}>
-              {row.map((node, nodeId) => {
-                const {row, col, isStart, isFinish, isWall} = node;
-                return (
-                  <Node 
-                    key={nodeId} 
-                    row={row}
-                    col={col}
-                    isStart={isStart}
-                    isFinish={isFinish}
-                    isWall={isWall}
-                    mousePressed={mousePressed}
-                    onMouseEnter={(row, col) => handleMouseEnter(row, col)}
-                    onMouseDown={(row, col) => handleMouseDown(row, col)}
-                    onMouseUp={() => handleMouseUp()}
-                  />
-                )
-              })}
-            </div>
-          )
-        })}
+      <p style={{textAlign: 'center', marginTop: '3%', marginBottom: '-2%'}}>Click or drag around the grid to create your own walls!</p>
+      <div className='main'>
+        <div className='grid'>
+          <div className='d-flex'>
+          <Button onClick={() => resetGrid()}>Clear</Button>
+          <Button style={{marginLeft: '.5%'}} onClick={() => visualizeDijkstra()}>
+            Run Dijkstra's Algorithm
+          </Button>
+          <h3 style={{margin: 'auto', marginLeft: '20%'}}>Shortest Path: {shortestPath.length}</h3>
+          </div>
+          {/* Iterate through every row and column and create a node */}
+          {grid.map((row, rowId) => {
+            return (
+              <div key={rowId}>
+                {row.map((node, nodeId) => {
+                  const {row, col, isStart, isFinish, isWall} = node;
+                  return (
+                    <Node 
+                      key={nodeId} 
+                      row={row}
+                      col={col}
+                      isStart={isStart}
+                      isFinish={isFinish}
+                      isWall={isWall}
+                      mousePressed={mousePressed}
+                      onMouseEnter={(row, col) => handleMouseEnter(row, col)}
+                      onMouseDown={(row, col) => handleMouseDown(row, col)}
+                      onMouseUp={() => handleMouseUp()}
+                    />
+                  )
+                })}
+              </div>
+            )
+          })}
+        </div>
       </div>
-    </>
+    </div>
   )
 }
 

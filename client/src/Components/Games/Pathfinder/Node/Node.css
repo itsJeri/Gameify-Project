@@ -16,6 +16,7 @@
 
 .node-user {
   background-color: white;
+  opacity: 95%;
 }
 
 /* When user selects start node */

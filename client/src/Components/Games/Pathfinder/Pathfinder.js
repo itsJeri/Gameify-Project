@@ -2,12 +2,42 @@ import { useState, useEffect } from 'react';
 
 import PathfinderGame from './PathfinderGame';
 import PathfinderSandbox from './PathfinderSandbox';
+import PathfinderScoreboard from './PathfinderScoreboard';
 
-function Pathfinder() {
+function Pathfinder({ game, user }) {
   const [page, setPage] = useState('PathfinderGame');
+  const [userScore, setUserScore] = useState({});
+  const [errors, setErrors] = useState([]);
 
-  if (page === 'PathfinderGame') return <PathfinderGame setPage={setPage}/>
+  function handleScoreSubmit(score) {
+    fetch('/scores', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        score: score,
+        user_id: user.id,
+        game_id: game.id
+      })
+    })
+      .then(r => {
+        if (r.ok) {
+          r.json().then(newScore => {
+            setUserScore(newScore);
+            setErrors([]);
+          })
+        } else {
+          r.json().then(err => {
+            setErrors(err.errors);
+          })
+        }
+      })
+  }
+
+  if (page === 'PathfinderGame') return <PathfinderGame setPage={setPage} handleScoreSubmit={handleScoreSubmit}/>
   if (page === 'PathfinderSandbox') return <PathfinderSandbox setPage={setPage}/>
+  if (page === 'PathfinderScoreboard') return <PathfinderScoreboard setPage={setPage} game={game} userScore={userScore}/>
 }
 
 export default Pathfinder;

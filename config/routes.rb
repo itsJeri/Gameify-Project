@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :scores, only: [:index, :create, :destroy]
+  resources :scores, only: [:index, :show, :create]
   resources :games, only: [:index, :show]
 
   # SESSIONS
@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   get '/me', to: 'users#show'
 
   # LEADERBOARDS
-  get '/leaderboards', to: 'scores#leaderboards'
+  get '/leaderboards', to: 'games#leaderboards_index'
+  get '/leaderboards/:id', to: 'games#leaderboards_show'
 
   # FOR DEPLOYMENT
   get '*path',
