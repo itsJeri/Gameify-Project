@@ -9,12 +9,17 @@ class ScoresController < ApplicationController
     render json: score
   end
 
-  def leaderboards
-    games = Game.all
-    render json: games, each_serializer: LeaderboardsSerializer, include: ['scores.user']
+  def create
+    score = @current_user.scores.create!(score_params)
+    render json: score, status: :created
   end
-
   # def user_scores
 
   # end
+  
+  private
+
+  def score_params
+    params.permit(:score, :user_id, :game_id)
+  end
 end
