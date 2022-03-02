@@ -9,6 +9,7 @@ function PathfinderSandbox({ setPage }) {
   const [grid, setGrid] = useState([]);
   const [mousePressed, setMousePressed] = useState(false);
   const [shortestPath, setShortestPath] = useState([]);
+  const [isVisualizing, setIsVisualizing] = useState(false);
 
   const START_NODE_ROW = 5;
   const START_NODE_COL = 5;
@@ -32,6 +33,8 @@ function PathfinderSandbox({ setPage }) {
     for (let row = 0; row < gridSize.row; row++) {
       const currentRow = [];
       for (let col = 0; col < gridSize.col; col++) {
+        const isStartNode = row === START_NODE_ROW && col === START_NODE_COL
+        const isFinishNode = row === FINISH_NODE_ROW && col === FINISH_NODE_COL
         // set properties of current row/col
         const currentNode = {
           row,
@@ -41,8 +44,8 @@ function PathfinderSandbox({ setPage }) {
           isWall: false,
           previousNode: null,
           // only true if conditions are met
-          isStart: row === START_NODE_ROW && col === START_NODE_COL,
-          isFinish: row === FINISH_NODE_ROW && col === FINISH_NODE_COL
+          isStart: isStartNode,
+          isFinish: isFinishNode
         };
         currentRow.push(currentNode);
       }
@@ -60,22 +63,6 @@ function PathfinderSandbox({ setPage }) {
     };
     newGrid[row][col] = newNode;
     return newGrid;
-  }
-
-  function resetGrid() {
-    setShortestPath([]);
-    // reset grid and node properties
-    setGrid(getGrid());
-    // get all nodes
-      getNodes().forEach(node => {
-      if (node.isStart) {
-        document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-start'
-      } else if (node.isFinish) {
-        document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-finish'
-      } else {
-        document.getElementById(`node-${node.row}-${node.col}`).className = 'node';
-      }
-    })
   }
 
   function getNodes() {
@@ -101,12 +88,14 @@ function PathfinderSandbox({ setPage }) {
 
   // HANDLE CLICKS
   function handleMouseEnter(row, col) {
-    if (!mousePressed) return;
+    if (!mousePressed || isVisualizing) return;
     handleWall(row, col);
   }
 
   function handleMouseDown(row, col) {
+    if (isVisualizing) return;
     handleWall(row, col);
+    clearDijkstra();
   }
 
   function handleMouseUp() {
@@ -121,6 +110,7 @@ function PathfinderSandbox({ setPage }) {
         document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-shortest-path';
       }, 50 * i);
     }
+    setIsVisualizing(false);
   }
 
   function animateDijkstra(visitedNodesOrdered, nodesInShortestPathOrder) {
@@ -128,7 +118,7 @@ function PathfinderSandbox({ setPage }) {
       if (i === visitedNodesOrdered.length) {
         setTimeout(() => {
           animateShortestPath(nodesInShortestPathOrder);
-        }, 10 * i);
+        }, 5 * i);
         return;
       }
       setTimeout(() => {
@@ -136,8 +126,53 @@ function PathfinderSandbox({ setPage }) {
         // Keep start and finish nodes displayed during visualization
         if (node.isStart || node.isFinish) return;
         document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-visited';
-      }, 10 * i);
+      }, 5 * i);
     }
+  }
+
+  // RESETS
+  function resetGrid() {
+    setShortestPath([]);
+    // reset grid and node properties
+    setGrid(getGrid());
+    // reset node visuals
+    getNodes().forEach(node => {
+      // start and finish nodes persist
+      if (node.isStart) {
+        document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-start'
+      } else if (node.isFinish) {
+        document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-finish'
+      } else {
+        document.getElementById(`node-${node.row}-${node.col}`).className = 'node';
+      }
+    })
+  }
+  
+  function clearDijkstra() {
+    setShortestPath([]);
+    // reset node visuals
+    getNodes().forEach(node => {
+      // start, finish, and wall nodes persist
+      if (node.isStart) {
+        document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-start'
+      } else if (node.isFinish) {
+        document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-finish'
+      } else if (node.isWall) {
+        return
+      } else {
+        document.getElementById(`node-${node.row}-${node.col}`).className = 'node';
+      }
+      // reset node properties
+      const newGrid = [...grid];
+      const newNode = {
+        ...node,
+        distance: Infinity,
+        isVisited: false,
+        previousNode: null
+      };
+      newGrid[node.row][node.col] = newNode;
+      return newGrid;
+    })
   }
 
   function visualizeDijkstra() {
@@ -150,6 +185,12 @@ function PathfinderSandbox({ setPage }) {
     setShortestPath(nodesInShortestPathOrder)
   }
 
+  function runVisualization() {
+    clearDijkstra();
+    visualizeDijkstra();
+    setIsVisualizing(true);
+  }
+
   return (
     <div className = 'd-grid gap-2'>
       <button onClick={() => setPage('PathfinderGame')}>
@@ -159,11 +200,11 @@ function PathfinderSandbox({ setPage }) {
       <div className='main'>
         <div className='grid'>
           <div className='d-flex'>
-          <Button onClick={() => resetGrid()}>Clear</Button>
-          <Button style={{marginLeft: '.5%'}} onClick={() => visualizeDijkstra()}>
+          <Button disabled={isVisualizing} style={{marginRight: '5%'}} onClick={resetGrid}>Reset Walls</Button>
+          <h3 style={{margin: 'auto'}}>Shortest Path: {shortestPath.length}</h3>
+          <Button disabled={isVisualizing} style={{marginLeft: '.5%'}} onClick={runVisualization}>
             Run Dijkstra's Algorithm
           </Button>
-          <h3 style={{margin: 'auto', marginLeft: '20%'}}>Shortest Path: {shortestPath.length}</h3>
           </div>
           {/* Iterate through every row and column and create a node */}
           {grid.map((row, rowId) => {
