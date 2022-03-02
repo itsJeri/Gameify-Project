@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import './Node.css';
 
-function Node({ row, col, isStart, isFinish, isWall, isUser, onMouseDown, onMouseEnter, onMouseUp }) {
+function Node({ row, col, isStart, isFinish, isWall, isUser, onMouseDown, onMouseEnter, onMouseUp, distance, showDistance }) {
 
   // Handle Start & Finish Nodes
   const nodeClass = isFinish ?
@@ -19,6 +19,8 @@ function Node({ row, col, isStart, isFinish, isWall, isUser, onMouseDown, onMous
     'node-user' :
     '';
 
+  const num = distance > 1000 || isWall ? '-' : distance
+
   return (
     <div 
       id={`node-${row}-${col}`}
@@ -26,7 +28,12 @@ function Node({ row, col, isStart, isFinish, isWall, isUser, onMouseDown, onMous
       onMouseEnter={() => onMouseEnter(row, col)}
       onMouseDown={() => onMouseDown(row, col)}
       onMouseUp={() => onMouseUp()}
-    />
+    >
+      {showDistance ?
+        <p>{num}</p> :
+        null
+      }
+    </div>
   )
 }
 

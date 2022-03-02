@@ -7,6 +7,8 @@ import { Button } from 'react-bootstrap';
 
 function PathfinderGame({ setPage, handleScoreSubmit }) {
   const [grid, setGrid] = useState([]);
+  const [gridRow, setGridRow] = useState(9);
+  const [gridCol, setGridCol] = useState(9);
   const [mousePressed, setMousePressed] = useState(false);
   const [shortestPath, setShortestPath] = useState([]);
   const [userScore, setUserScore] = useState(0);
@@ -15,8 +17,6 @@ function PathfinderGame({ setPage, handleScoreSubmit }) {
   const [submitted, setSubmitted] = useState(false);
   const [renderResults, setRenderResults] = useState(false);
   const [level, setLevel] = useState(1);
-  const [gridRow, setGridRow] = useState(9);
-  const [gridCol, setGridCol] = useState(9);
   const [wallChance, setWallChance] = useState(0.2);
 
   // Start and Finish nodes placed in relation to grid size

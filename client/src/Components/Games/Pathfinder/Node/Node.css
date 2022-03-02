@@ -4,6 +4,11 @@
   outline: 1px solid #84ceeb;
   display: inline-block;
   margin-bottom: -4px;
+  text-align: center;
+}
+
+.node p {
+  font-size: 12px;
 }
 
 .node-start {

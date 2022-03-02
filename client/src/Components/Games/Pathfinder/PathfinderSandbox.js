@@ -7,19 +7,20 @@ import { Button } from 'react-bootstrap';
 
 function PathfinderSandbox({ setPage }) {
   const [grid, setGrid] = useState([]);
+  const [gridSize, setGridSize] = useState({
+    row: 20,
+    col: 30
+  });
   const [mousePressed, setMousePressed] = useState(false);
   const [shortestPath, setShortestPath] = useState([]);
   const [isVisualizing, setIsVisualizing] = useState(false);
+  const [animationSpeed, setAnimationSpeed] = useState(5);
+  const [showDistance, setShowDistance] = useState(false);
 
   const START_NODE_ROW = 5;
   const START_NODE_COL = 5;
   const FINISH_NODE_ROW = 15;
   const FINISH_NODE_COL = 25;
-
-  const gridSize = {
-    row: 20,
-    col: 30
-  }
 
   useEffect(() => {
     const grid = getGrid();
@@ -118,7 +119,7 @@ function PathfinderSandbox({ setPage }) {
       if (i === visitedNodesOrdered.length) {
         setTimeout(() => {
           animateShortestPath(nodesInShortestPathOrder);
-        }, 5 * i);
+        }, animationSpeed * i);
         return;
       }
       setTimeout(() => {
@@ -126,7 +127,7 @@ function PathfinderSandbox({ setPage }) {
         // Keep start and finish nodes displayed during visualization
         if (node.isStart || node.isFinish) return;
         document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-visited';
-      }, 5 * i);
+      }, animationSpeed * i);
     }
   }
 
@@ -200,7 +201,8 @@ function PathfinderSandbox({ setPage }) {
       <div className='main'>
         <div className='grid'>
           <div className='d-flex'>
-          <Button disabled={isVisualizing} style={{marginRight: '5%'}} onClick={resetGrid}>Reset Walls</Button>
+          <Button disabled={isVisualizing} onClick={resetGrid}>Reset Walls</Button>
+          <Button style={{marginLeft: '.5%', marginRight: '-5%'}} onClick={() => setShowDistance(!showDistance)}>Toggle Distance</Button>
           <h3 style={{margin: 'auto'}}>Shortest Path: {shortestPath.length}</h3>
           <Button disabled={isVisualizing} style={{marginLeft: '.5%'}} onClick={runVisualization}>
             Run Dijkstra's Algorithm
@@ -211,7 +213,7 @@ function PathfinderSandbox({ setPage }) {
             return (
               <div key={rowId}>
                 {row.map((node, nodeId) => {
-                  const {row, col, isStart, isFinish, isWall} = node;
+                  const {row, col, isStart, isFinish, isWall, distance} = node;
                   return (
                     <Node 
                       key={nodeId} 
@@ -224,6 +226,8 @@ function PathfinderSandbox({ setPage }) {
                       onMouseEnter={(row, col) => handleMouseEnter(row, col)}
                       onMouseDown={(row, col) => handleMouseDown(row, col)}
                       onMouseUp={() => handleMouseUp()}
+                      distance={distance}
+                      showDistance={showDistance}
                     />
                   )
                 })}
