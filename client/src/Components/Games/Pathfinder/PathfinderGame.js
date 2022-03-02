@@ -13,11 +13,13 @@ function PathfinderGame({ setPage, handleScoreSubmit }) {
   const [userPath, setUserPath] = useState([]);
   const [atFinish, setAtFinish] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [renderResults, setRenderResults] = useState(false);
   const [level, setLevel] = useState(1);
   const [gridRow, setGridRow] = useState(9);
   const [gridCol, setGridCol] = useState(9);
   const [wallChance, setWallChance] = useState(0.2);
 
+  // Start and Finish nodes placed in relation to grid size
   const START_NODE_ROW = Math.floor(gridRow * .25);
   const START_NODE_COL = Math.floor(gridCol * .2);
   const FINISH_NODE_ROW = Math.floor(gridRow * .75);
@@ -44,7 +46,7 @@ function PathfinderGame({ setPage, handleScoreSubmit }) {
           col,
           distance: Infinity,
           isVisited: false,
-          isWall: false,
+          isWall: randomWall(row, col),
           isUser: false,
           previousNode: null,
           previousUserNode: null,
@@ -59,18 +61,10 @@ function PathfinderGame({ setPage, handleScoreSubmit }) {
     return grid;
   }
 
-  // function getNewGridWithRandomWalls() {
-  //   const grid = getGrid();
-  //   const newGrid = grid.map(node => {
-  //     console.log(node)
-  //   })
-  //   return newGrid;
-  // }
-
   function randomWall(row, col) {
-    const startNode = row === START_NODE_ROW && col === START_NODE_COL
-    const finishNode = row === FINISH_NODE_ROW && col === FINISH_NODE_COL
-    if (startNode || finishNode) return false
+    const isStartNode = row === START_NODE_ROW && col === START_NODE_COL
+    const isFinishNode = row === FINISH_NODE_ROW && col === FINISH_NODE_COL
+    if (isStartNode || isFinishNode) return false
     else if (Math.random() < wallChance) return true
     else return false
   }
@@ -86,24 +80,6 @@ function PathfinderGame({ setPage, handleScoreSubmit }) {
     };
     newGrid[row][col] = newNode;
     return newGrid;
-  }
-
-  function resetGrid() {
-    setShortestPath([]);
-    setUserPath([]);
-    setSubmitted(false);
-    // reset grid and node properties
-    setGrid(getGrid());
-    // reset node visuals
-    getNodes().forEach(node => {
-      if (node.isStart) {
-        document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-start'
-      } else if (node.isFinish) {
-        document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-finish'
-      } else {
-        document.getElementById(`node-${node.row}-${node.col}`).className = 'node';
-      }
-    })
   }
 
   function getNodes() {
@@ -160,11 +136,12 @@ function PathfinderGame({ setPage, handleScoreSubmit }) {
 
   // HANDLE CLICKS
   function handleMouseEnter(row, col) {
-    if (!mousePressed) return;
+    if (!mousePressed || submitted) return;
     handleUserSelect(row, col)
   }
 
   function handleMouseDown(row, col) {
+    if (submitted) return;
     handleUserSelect(row, col)
   }
 
@@ -180,6 +157,7 @@ function PathfinderGame({ setPage, handleScoreSubmit }) {
         document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-shortest-path';
       }, 50 * i);
     }
+    handleLevelResults();
   }
 
   function animateDijkstra(visitedNodesOrdered, nodesInShortestPathOrder) {
@@ -204,20 +182,49 @@ function PathfinderGame({ setPage, handleScoreSubmit }) {
     const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
     const visitedNodesOrdered = dijkstra(grid, startNode, finishNode);
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
-    animateDijkstra(visitedNodesOrdered, nodesInShortestPathOrder);
+    animateDijkstra(visitedNodesOrdered, nodesInShortestPathOrder)
     // display shortest path as number
     setShortestPath(nodesInShortestPathOrder)
+  }
+
+  // RESETS
+  function resetGrid() {
+    setShortestPath([]);
+    setUserPath([]);
+    setRenderResults(false);
+    setSubmitted(false);
+    // reset grid and node properties
+    setGrid(getGrid())
+    // reset node visuals
+    getNodes().forEach(node => {
+      if (node.isVisited) {
+        document.getElementById(`node-${node.row}-${node.col}`).className = 'node'
+      }
+    })
+  }
+
+  function clearUserPath() {
+    setUserPath([]);
+    getNodes().forEach(node => {
+      if (node.isUser) {
+        node.isUser = false
+      }
+    })
   }
 
   // HANDLE SUBMIT
   function handleLevelSubmit() {
     visualizeDijkstra();
-    setSubmitted(true);
     setAtFinish(false);
-    setUserScore(userScore + 1)
-    setGridRow(gridRow + 1);
-    setGridCol(gridCol + 1);
+    setSubmitted(true);
   } 
+
+  function handleLevelResults() {
+    setRenderResults(true);
+    setUserScore(userScore + 1);
+    if (gridRow < 15) setGridRow(gridRow + 2);
+    setGridCol(gridCol + 2);
+  }
 
   function handleScore() {
     handleScoreSubmit(userScore)
@@ -233,14 +240,14 @@ function PathfinderGame({ setPage, handleScoreSubmit }) {
     if (userPath.length === shortestPath.length) {
       return (
         <>
-        <h3 style={{margin: 'auto', marginLeft: '35%'}}>WIN</h3> 
-        <Button onClick={() => handleNextLevel()}>Next Level</Button>
+        <h3 style={{margin: 'auto'}}>WIN</h3> 
+        <Button  onClick={() => handleNextLevel()}>Next Level</Button>
         </>
       )
     } else {
       return (
         <>
-        <h3 style={{margin: 'auto', marginLeft: '25%'}}>GAME OVER</h3>
+        <h3 style={{margin: 'auto'}}>GAME OVER</h3>
         <Button onClick={() => handleScore()}>Submit Score</Button>
         </>
       )
@@ -255,8 +262,8 @@ function PathfinderGame({ setPage, handleScoreSubmit }) {
       <div className='main'>
         <div className='grid'>
           <div className='d-flex'>
-            <Button disabled={submitted} onClick={() => resetGrid()}>Clear</Button>
-            {submitted ? renderGameResult() : null}
+            <Button disabled={submitted} style={{marginRight: '4%'}} onClick={clearUserPath}>Clear</Button>
+            {renderResults ? renderGameResult() : null}
           </div>
           {/* Iterate through every row's column and create a node */}
           {grid.map((row, rowId) => {
