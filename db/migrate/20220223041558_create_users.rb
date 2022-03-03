@@ -1,9 +1,13 @@
 class CreateUsers < ActiveRecord::Migration[7.0]
   def change
+    # enable citext for case insensitive usernames and emails
+    enable_extension(:citext)
     create_table :users do |t|
-      t.string :username
+      t.citext :username
+      t.index :username, unique: true
       t.string :password_digest
-      t.string :email
+      t.citext :email
+      t.index :email, unique: true
 
       t.timestamps
     end

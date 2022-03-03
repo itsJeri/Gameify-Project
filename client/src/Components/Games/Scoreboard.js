@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Pagination from '../Pagination';
+import Td from '../Table/Td';
 
 import { Table, Button } from 'react-bootstrap';
 
@@ -42,7 +43,7 @@ function PathfinderScoreboard({ game }) {
               return (
                 <tr key={score.id}>
                   <td>{ranking}</td>
-                  <td>{user.username}</td>
+                  <Td to={`/${user.username}`}>{user.username}</Td>
                   <td>{score.score}</td>
                   <td>{new Date(score.created_at).toLocaleDateString('en-GB')}</td>
                 </tr>
