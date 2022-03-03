@@ -10,6 +10,7 @@ import NumberMemory from './Games/NumberMemory';
 function Gameify({ currentUser }) {
   const [users, setUsers] = useState([]);
   const [games, setGames] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     fetch('/users')
@@ -18,8 +19,13 @@ function Gameify({ currentUser }) {
       
     fetch('/games')
       .then(r => r.json())
-      .then(games => setGames(games))
+      .then(games => {
+        setGames(games)
+        setIsLoading(false);
+      })
   }, []);
+
+  if (isLoading) return <p>Loading...</p>
 
   // GAME ROUTE HANDLERS
 

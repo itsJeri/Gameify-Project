@@ -19,8 +19,12 @@ function ProfilePage({ userId, games }) {
 
   const scoreCards = games.map(game => {
     const gameScores = user.scores.filter(score => score.game_id === game.id)
-    const averageScore = (gameScores.map(scoreObj => scoreObj.score).reduce((prev, curr) => prev + curr, 0) / gameScores.length).toFixed(2);
-    const highScore = gameScores.reduce((prev, curr) => prev.score > curr.score ? prev : curr).score;
+    const averageScore = gameScores.length ? 
+      (gameScores.map(scoreObj => scoreObj.score).reduce((prev, curr) => prev + curr, 0) / gameScores.length).toFixed(2) : 
+      0;
+    const highScore = gameScores.length ? 
+      gameScores.reduce((prev, curr) => prev.score > curr.score ? prev : curr).score : 
+      0;
 
     return (
       <Card key={game.id}>
