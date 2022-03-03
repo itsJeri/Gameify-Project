@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :scores, only: [:index, :show, :create]
   resources :games, only: [:index, :show]
+  resources :users, only: [:index]
 
   # SESSIONS
   post '/login', to: 'sessions#create'
@@ -9,6 +10,9 @@ Rails.application.routes.draw do
   # USERS
   post '/signup', to: 'users#create'
   get '/me', to: 'users#show'
+
+  # USER STATS
+  get '/profiles/:id', to: 'users#show_stats'
 
   # LEADERBOARDS
   get '/leaderboards', to: 'games#leaderboards_index'

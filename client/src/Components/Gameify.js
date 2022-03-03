@@ -2,14 +2,20 @@ import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import MainPage from './MainPage';
+import ProfilePage from './ProfilePage';
 import GamesPage from './GamesPage';
 import Pathfinder from './Games/Pathfinder/Pathfinder';
 import NumberMemory from './Games/NumberMemory';
 
-function Gameify({ user }) {
+function Gameify({ currentUser }) {
+  const [users, setUsers] = useState([]);
   const [games, setGames] = useState([]);
 
   useEffect(() => {
+    fetch('/users')
+      .then(r => r.json())
+      .then(users => setUsers(users))
+      
     fetch('/games')
       .then(r => r.json())
       .then(games => setGames(games))
@@ -39,7 +45,17 @@ function Gameify({ user }) {
       <Route
         key={game.id}
         path={`/games/${urlName}`}
-        element={<GameComponent game={game} user={user}/>}
+        element={<GameComponent game={game} user={currentUser}/>}
+      />
+    )
+  })
+
+  const userProfileRoutes = users.map(user => {
+    return (
+      <Route
+        key={user.id}
+        path={`/${user.username}`}
+        element={<ProfilePage userId={user.id} games={games} />}
       />
     )
   })
@@ -55,6 +71,7 @@ function Gameify({ user }) {
         element={<GamesPage games={games} regex={regex} />}
       />
       {gameRoutes}
+      {userProfileRoutes}
       {/* <Route
         path={'/games/pathfinder'}
         element={<Pathfinder />}

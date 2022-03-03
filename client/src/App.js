@@ -27,7 +27,7 @@ function App() {
     <>
       <NavBar user={user} setUser={setUser} />
       <main>
-        <Gameify user={user} />
+        <Gameify currentUser={user} />
       </main>
     </>
   );

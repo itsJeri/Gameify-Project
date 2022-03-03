@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import Pagination from './Pagination';
+import Td from './Table/Td';
+import { Link } from 'react-router-dom';
 
 import { Tabs, Tab, Table } from 'react-bootstrap';
 
@@ -25,7 +27,7 @@ function Leaderboards() {
     const currentScores = game.scores.slice(indexOfFirstScore, indexOfLastScore);
 
     return (
-      <Tab key={game.id} eventKey={game.name} title={game.name}>
+      <Tab style={{width: '90%', margin: 'auto'}} key={game.id} eventKey={game.name} title={game.name}>
         <Table striped bordered hover size="sm">
           <thead>
             <tr>
@@ -42,7 +44,7 @@ function Leaderboards() {
               return (
                 <tr key={score.id}>
                   <td>{ranking}</td>
-                  <td>{user.username}</td>
+                  <Td to={`/${user.username}`}>{user.username}</Td>
                   <td>{score.score}</td>
                   <td>{new Date(score.created_at).toLocaleDateString('en-GB')}</td>
                 </tr>
@@ -57,17 +59,15 @@ function Leaderboards() {
 
   return (
     <>
-    <div className='home-container'>
-        <h3>Leaderboards</h3>
-        {isLoading ?
-          <p>Loading scores...</p> :
-          <>
-          <Tabs defaultActiveKey='Pathfinder' className='mb-3'>
-          {leaderboardTabs}
-          </Tabs>
-          </>
-        }
-    </div>
+      <h3>Leaderboards</h3>
+      {isLoading ?
+        <p>Loading scores...</p> :
+        <div className='scoreboard'>
+        <Tabs defaultActiveKey='Pathfinder' className='mb-3'>
+        {leaderboardTabs}
+        </Tabs>
+        </div>
+      }
     </>
   )
 }

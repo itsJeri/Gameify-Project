@@ -5,7 +5,9 @@ function MainPage({ games }) {
 
   return (
     <>
-    <Leaderboards />
+    <div className='home-leaderboard'>
+      <Leaderboards />
+    </div>
     </>
   )
 }

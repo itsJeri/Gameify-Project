@@ -25,8 +25,8 @@ function PathfinderScoreboard({ game }) {
   const currentScores = leaderboard.scores.slice(indexOfFirstScore, indexOfLastScore);
 
   return (
-        <>
-        <Table style={{maxHeight: '30%'}}striped bordered hover size="sm">
+        <div className='scoreboard'>
+        <Table striped bordered hover size="sm">
           <thead>
             <tr>
               <th>#</th>
@@ -51,7 +51,7 @@ function PathfinderScoreboard({ game }) {
           </tbody>
         </Table>
         <Pagination scoresPerPage={scoresPerPage} totalScores={leaderboard.scores.length} setCurrentPage={setCurrentPage} />
-        </>
+        </div>
   )
 }
 

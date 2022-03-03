@@ -256,8 +256,8 @@ function PathfinderGame({ setPage, handleScoreSubmit }) {
 
   return (
     <div className = 'd-grid gap-2'>
-      <button onClick={() => setPage('PathfinderSandbox')}>
-        To Sandbox Mode
+      <button onClick={() => setPage('Pathfinder')}>
+        Return to Main Menu
       </button>
       <div className='main'>
         <div className='grid'>

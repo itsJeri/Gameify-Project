@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 
+import { Button } from 'react-bootstrap';
+
 import PathfinderGame from './PathfinderGame';
 import PathfinderSandbox from './PathfinderSandbox';
 import PathfinderScoreboard from './PathfinderScoreboard';
 import Scoreboard from '../Scoreboard';
 
 function Pathfinder({ game, user }) {
-  const [page, setPage] = useState('PathfinderScoreboard');
+  const [page, setPage] = useState('Pathfinder');
   const [userScore, setUserScore] = useState({});
   const [errors, setErrors] = useState([]);
 
@@ -34,6 +36,17 @@ function Pathfinder({ game, user }) {
           })
         }
       })
+  }
+
+  if (page === 'Pathfinder') {
+    return (
+      <div>
+        <h1>Welcome to Pathfinder</h1>
+        <Button onClick={() => setPage('PathfinderGame')}>Classic</Button>
+        <Button>Versus AI</Button>
+        <Button onClick={() => setPage('PathfinderSandbox')}>Sandbox</Button>
+      </div>
+    )
   }
 
   if (page === 'PathfinderGame') return <PathfinderGame setPage={setPage} handleScoreSubmit={handleScoreSubmit}/>
