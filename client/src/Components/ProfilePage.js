@@ -13,7 +13,7 @@ function ProfilePage({ userId, games }) {
         setUser(user);
         setIsLoading(false);
       })
-  }, []);
+  }, [userId]);
   
   if (isLoading) return <p>loading...</p>
 

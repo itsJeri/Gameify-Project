@@ -5,7 +5,7 @@ import MainPage from './MainPage';
 import ProfilePage from './ProfilePage';
 import GamesPage from './GamesPage';
 import Pathfinder from './Games/Pathfinder/Pathfinder';
-import NumberMemory from './Games/NumberMemory';
+import NumberMemory from './Games/NumberMemory/NumberMemory';
 
 function Gameify({ currentUser }) {
   const [users, setUsers] = useState([]);

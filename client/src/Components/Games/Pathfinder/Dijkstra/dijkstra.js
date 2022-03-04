@@ -14,7 +14,7 @@ function getAllNodes(grid) {
 function getUnvisitedNeighbors(node, grid) {
   const neighbors = [];
   const {col, row} = node;
-  // conditionals to identify and push all current node's neighbors to array
+  // conditionals to check if each neighbor exists and push all current node's neighbors (up, down, left, right) to array
   if (row > 0) neighbors.push(grid[row - 1][col]);
   if (row < grid.length - 1) neighbors.push(grid[row + 1][col]);
   if (col > 0) neighbors.push(grid[row][col - 1]);
