@@ -94,7 +94,7 @@ function PathfinderGame({ setPage, handleScoreSubmit }) {
 
   function getNeighbors(row, col) {
     const neighbors = [];
-    // conditionals to identify and push all current node's neighbors to array
+    // conditionals to check if each neighbor exists and push all current node's neighbors (up, down, left, right) to array
     if (row > 0) neighbors.push(grid[row - 1][col]);
     if (row < grid.length - 1) neighbors.push(grid[row + 1][col]);
     if (col > 0) neighbors.push(grid[row][col - 1]);
@@ -222,8 +222,9 @@ function PathfinderGame({ setPage, handleScoreSubmit }) {
   function handleLevelResults() {
     setRenderResults(true);
     setUserScore(userScore + 1);
+    // Increment grid with a maximum grid size
     if (gridRow < 15) setGridRow(gridRow + 2);
-    setGridCol(gridCol + 2);
+    if (gridCol < 30) setGridCol(gridCol + 2);
   }
 
   function handleScore() {

@@ -15,16 +15,16 @@ function NavBar({ user, setUser }) {
 
   return (
     <div>
-      <Navbar bg="light" expand="lg" id="navbar">
+      <Navbar expand="lg" id="navbar">
         <Container id="navbar">
-          <Navbar.Brand className="nav-logo" href="#home">
+          <Navbar.Brand className="nav-logo">
             <p>GAMEIFY</p>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav"/>
           <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
              <Nav.Link as={Link} to={'/'}>Home</Nav.Link>
-             <Nav.Link as={Link} to={`/${user.username}`}>Dashboard</Nav.Link>
+             <Nav.Link as={Link} to={`/${user.username}`}>My Profile</Nav.Link>
              <Nav.Link as={Link} to={'/games'}>Games</Nav.Link>
           </Nav>
           </Navbar.Collapse>

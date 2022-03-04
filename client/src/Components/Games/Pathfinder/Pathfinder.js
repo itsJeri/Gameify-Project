@@ -8,11 +8,14 @@ import PathfinderScoreboard from './PathfinderScoreboard';
 import Scoreboard from '../Scoreboard';
 
 function Pathfinder({ game, user }) {
-  const [page, setPage] = useState('Pathfinder');
+  const [page, setPage] = useState('PathfinderScoreboard');
   const [userScore, setUserScore] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState([]);
 
   function handleScoreSubmit(score) {
+    // Waits for POST to GET leaderboard with new score
+    setIsSubmitting(true);
     fetch('/scores', {
       method: 'POST',
       headers: {
@@ -28,10 +31,12 @@ function Pathfinder({ game, user }) {
         if (r.ok) {
           r.json().then(newScore => {
             setUserScore(newScore);
+            setIsSubmitting(false);
             setErrors([]);
           })
         } else {
           r.json().then(err => {
+            setIsSubmitting(false);
             setErrors(err.errors);
           })
         }
@@ -51,8 +56,8 @@ function Pathfinder({ game, user }) {
 
   if (page === 'PathfinderGame') return <PathfinderGame setPage={setPage} handleScoreSubmit={handleScoreSubmit}/>
   if (page === 'PathfinderSandbox') return <PathfinderSandbox setPage={setPage}/>
-  if (page === 'PathfinderScoreboard') return <PathfinderScoreboard setPage={setPage} game={game} userScore={userScore}/>
-  if (page === 'Scoreboard') return <Scoreboard setPage={setPage} game={game} userScore={userScore} />
+  if (page === 'PathfinderScoreboard') return <PathfinderScoreboard setPage={setPage} game={game} userScore={userScore} isSubmitting={isSubmitting}/>
+  // if (page === 'Scoreboard') return <Scoreboard setPage={setPage} game={game} userScore={userScore} />
 }
 
 export default Pathfinder;
