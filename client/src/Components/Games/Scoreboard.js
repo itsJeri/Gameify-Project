@@ -21,7 +21,7 @@ function PathfinderScoreboard({ game, userScore }) {
           // handle edge case i=0 if score is on first page
           if (i < 10) return;
           if (score.id === userScore.id) {
-            setCurrentPage(Math.ceil(i/10))
+            setCurrentPage(Math.ceil((i + 1) / 10))
           }
         })
       })
