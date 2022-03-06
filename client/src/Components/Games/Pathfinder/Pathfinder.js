@@ -8,7 +8,7 @@ import PathfinderScoreboard from './PathfinderScoreboard';
 import Scoreboard from '../Scoreboard';
 
 function Pathfinder({ game, user }) {
-  const [page, setPage] = useState('PathfinderScoreboard');
+  const [page, setPage] = useState('Pathfinder');
   const [userScore, setUserScore] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState([]);
