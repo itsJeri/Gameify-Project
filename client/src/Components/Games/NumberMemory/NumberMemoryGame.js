@@ -12,7 +12,7 @@ function NumberMemoryGame({ setPage, handleScoreSubmit }) {
   const [multiplier, setMultiplier] = useState(10);
 
   // Random Number place value increases per round
-  const randNum = Math.floor(Math.random() * multiplier)
+  const randNum = parseInt((Math.random() * (1 - 0.1) + 0.1) * multiplier)
 
   useEffect(() => {
     setCorrectNum(randNum);
