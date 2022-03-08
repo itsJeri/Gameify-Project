@@ -7,7 +7,7 @@ import NumberMemoryGame from './NumberMemoryGame';
 import NumberMemoryScoreboard from './NumberMemoryScoreboard';
 
 function NumberMemory({ game, user }) {
-  const [page, setPage] = useState('NumberMemoryScoreboard');
+  const [page, setPage] = useState('NumberMemory');
   const [userScore, setUserScore] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState([]);
