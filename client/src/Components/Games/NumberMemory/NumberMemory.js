@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
+import './NumberMemory.css'
 import { Button } from 'react-bootstrap';
 
 import NumberMemoryGame from './NumberMemoryGame';
@@ -42,7 +43,7 @@ function NumberMemory({ game, user }) {
 
   if (page === 'NumberMemory') {
     return (
-      <div>
+      <div className='number-memory-main'>
         <h1>Number Memory</h1>
         <h3>How many digits can you remember?</h3>
         <Button onClick={() => setPage('NumberMemoryGame')}>START</Button>

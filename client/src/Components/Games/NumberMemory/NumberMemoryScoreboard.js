@@ -11,7 +11,7 @@ function NumberMemoryScoreboard({ setPage, game, userScore, isSubmitting }) {
     <div className='leaderboard'>
       <h3>{game.name} Leaderboard</h3>
       <Scoreboard game={game} userScore={userScore}/>
-      <Button onClick={() => setPage('NumberMemory')}>Play again</Button>
+      <Button style={{marginTop: '1rem'}} onClick={() => setPage('NumberMemory')}>Play again</Button>
    </div>
   )
 }
