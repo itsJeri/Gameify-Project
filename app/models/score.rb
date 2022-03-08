@@ -7,4 +7,8 @@ class Score < ApplicationRecord
   def self.sort_by_highest
     self.order(score: :desc)
   end
+
+  def self.sort_by_recent
+    self.order(created_at: :desc)
+  end
 end

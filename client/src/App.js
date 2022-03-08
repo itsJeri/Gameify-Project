@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginPage from './Components/LoginPage';
 import NavBar from './Components/NavBar';
 import Gameify from './Components/Gameify';
+import Footer from './Components/Footer';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -29,6 +30,7 @@ function App() {
       <main>
         <Gameify currentUser={user} />
       </main>
+      <Footer />
     </>
   );
 }

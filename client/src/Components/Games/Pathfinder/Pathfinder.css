@@ -12,3 +12,16 @@
   margin: auto;
   margin-left: -5%;
 }
+
+.pathfinder-main {
+  margin: auto;
+  margin-top: 5rem;
+  text-align: center;
+}
+
+.pathfinder-main button {
+  margin: auto;
+  width: 25%;
+  margin-top: 2rem;
+  display: block;
+}

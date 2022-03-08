@@ -11,9 +11,9 @@ html {
   background-color: #0b0c10;
 }
 
-/* main {
-  background-color: #0b0c10;
-} */
+main {
+  min-height: 55rem;
+}
 
 /* NAVBAR */
 #navbar {
@@ -79,13 +79,13 @@ form {
 
 /* PROFILE PAGE */
 .profile-page {
-  background-color: #f1f1f1;
+  /* background-color: #f1f1f1; */
   color: #757575;
   text-align: center;
-  border-radius: 3rem;
+  border-radius: .1rem;
   height: 100%;
-  height: 37rem;
-  width: 50%;
+  min-height: 37rem;
+  width: 70%;
   margin: auto;
   padding-top: 2em;
   margin-top: 3em;
@@ -122,6 +122,85 @@ form {
 
 .pagination {
   border-radius: 3rem;
-  /* width: 90%; */
   margin: 0 auto;
+}
+
+.page-item li {
+  background-color: gray;
+}
+
+/* FOOTER */
+.footer {
+  background-color: #1f2833;
+  width: 100%;
+  text-align: left;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 50px;
+}
+
+.footer .footer-left,
+.footer .footer-right {
+  display: inline-block;
+  vertical-align: top;
+}
+
+/* FOOTER LEFT */
+.footer .footer-left {
+  padding-right: 15px;
+}
+
+.footer .about {
+  line-height: 20px;
+  color: #84ceeb;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.footer .about span {
+  display: block;
+  color: #84ceeb;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* FOOTER RIGHT */
+.footer .footer-right {
+  float: right;
+  padding-right: 75px;
+}
+
+.footer .footer-right i {
+  background-color: #84ceeb;
+  color: #ffffff;
+  font-size: 25px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 42px;
+  margin: 10px 15px;
+  vertical-align: middle;
+}
+
+.footer .footer-right p {
+  display: inline-block;
+  color: #84ceeb;
+  vertical-align: middle;
+  margin: 0;
+}
+
+.footer .footer-right p span {
+  display: block;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 2;
+}
+
+.footer .copyright {
+  font-weight: normal;
+  font-size: 14px;
 }

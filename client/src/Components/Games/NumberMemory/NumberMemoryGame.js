@@ -70,7 +70,9 @@ function NumberMemoryGame({ setPage, handleScoreSubmit }) {
   }
 
   return (
-    gamePage()
+    <div className='number-memory-main'>
+      {gamePage()}
+    </div>
   )
 }
 
