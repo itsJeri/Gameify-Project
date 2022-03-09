@@ -17,7 +17,7 @@ function Countdown({ setAnswerPage }) {
       clearTimeout(timer);
       setAnswerPage(true);
     }
-  })
+  }, [countDown])
 
   return (
     <ProgressBar now={now} />

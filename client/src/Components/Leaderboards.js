@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Pagination from './Pagination';
+import Paginate from './Paginate';
 import Td from './Table/Td';
 import { Link } from 'react-router-dom';
 
@@ -52,7 +52,7 @@ function Leaderboards() {
             })}
           </tbody>
         </Table>
-        <Pagination scoresPerPage={scoresPerPage} totalScores={game.scores.length} setCurrentPage={setCurrentPage} />
+        <Paginate scoresPerPage={scoresPerPage} totalScores={game.scores.length} currentPage={currentPage} setCurrentPage={setCurrentPage} />
       </Tab>
     )
   })
