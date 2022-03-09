@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Pagination from '../Pagination';
+import Paginate from '../Paginate';
 import Td from '../Table/Td';
 
 import { Table, Button } from 'react-bootstrap';
@@ -65,7 +65,7 @@ function PathfinderScoreboard({ game, userScore }) {
         })}
       </tbody>
     </Table>
-    <Pagination scoresPerPage={scoresPerPage} totalScores={leaderboard.scores.length} setCurrentPage={setCurrentPage} />
+    <Paginate scoresPerPage={scoresPerPage} totalScores={leaderboard.scores.length} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </div>
   )
 }
