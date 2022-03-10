@@ -260,6 +260,7 @@ function PathfinderGame({ setPage, handleScoreSubmit }) {
       <button onClick={() => setPage('PathfinderSandbox')}>
         To Sandbox Mode
       </button>
+      <p style={{textAlign: 'center', marginTop: '3%', marginBottom: '-2%'}}>Click or drag the shortest path.</p>
       <div className='main'>
         <div className='grid'>
           <div className='d-flex'>

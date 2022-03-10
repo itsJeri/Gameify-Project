@@ -9,8 +9,9 @@ import numberMemoryDark from '../assets/number_memory_light.png';
 import numberMemoryLight from '../assets/number_memory_light.png';
 
 function GameCard({ game, urlName }) {
-  const [images, setImages] = useState(identifyImages())
+  const [images, setImages] = useState(identifyImages());
   const [image, setImage] = useState(images.light);
+  const [showText, setShowText] = useState(false);
 
   function identifyImages() {
     if (game.name === 'Pathfinder') return {
@@ -23,13 +24,27 @@ function GameCard({ game, urlName }) {
     }
   }
 
+  function handleMouseEnter() {
+    setImage(images.dark);
+    setShowText(true);
+  }
+
+  function handleMouseLeave() {
+    setImage(images.light);
+    setShowText(false);
+  }
+
   return (
-    <Card key={game.id} as={Link} to={`/games/${urlName}`} className='game-card' onMouseEnter={() => setImage(images.dark)} onMouseLeave={() => setImage(images.light)}>
-    <Card.Img variant="top" src={image} />
+    <Card key={game.id} as={Link} to={`/games/${urlName}`} className='game-card' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
+    <Card.Img src={image} />
     <Card.Body>
-      <div className='pathfinder-card'>
-      <Card.Title>{game.name}</Card.Title>
-      </div>
+      {showText ? 
+        <div className='game-card-name'>
+        <Card.Title style={{fontSize: '3rem'}} >{game.name}</Card.Title>
+        </div> :
+        <p style={{fontSize: '3rem'}}>&nbsp;</p>
+      }
+
       {/* <Card.Text>
       </Card.Text> */}
     </Card.Body>

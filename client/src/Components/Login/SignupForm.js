@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
+import logo from '../../assets/logo.png'
+
 function SignupForm({ setUser, setShowLogin }) {
   const [signupForm, setSignupForm] = useState({
     username: '',
@@ -44,6 +46,7 @@ function SignupForm({ setUser, setShowLogin }) {
   return (
     <div className='d-flex justify-content-center' id='form-container'>
       <Form className='text-center rounded p-4 p-sm-3' onSubmit={e => handleSubmit(e)} id='login-form'>
+      <img id='logo' src={logo} alt='logo'/>
         <Form.Group className='mb-3'>
           <Form.Label htmlFor='username'>Username</Form.Label>
           <Form.Control

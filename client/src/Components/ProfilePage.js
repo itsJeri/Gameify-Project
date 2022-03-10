@@ -29,17 +29,19 @@ function ProfilePage({ userId, games }) {
     const recentScores = gameScores.slice(0, 5).reverse()
 
     return (
-      <Accordion.Item eventKey={game.id} key={game.id}>
-        <Accordion.Header>
+      <div style={{marginBottom: '5rem'}}>
+      {/* <Accordion.Item eventKey={game.id} key={game.id}>
+        <Accordion.Header> */}
           <div>
            <h3>{game.name}</h3>
            <p>Average: {averageScore} | High Score: {highScore}</p>
           </div>
-        </Accordion.Header>
-        <Accordion.Body>
+        {/* </Accordion.Header>
+        <Accordion.Body> */}
           <Graph recentScores={recentScores}/>
-        </Accordion.Body>
-      </Accordion.Item>
+        {/* </Accordion.Body>
+      </Accordion.Item> */}
+      </div>
     )
   })
 

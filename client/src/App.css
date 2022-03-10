@@ -7,6 +7,12 @@
   color: #c5c6c7;
 }
 
+body * {
+  /* font-family: "Syne Mono", monospace; */
+  font-family: 'VT323';
+  font-size: 20px;
+}
+
 html {
   background-color: #121319;
 }
@@ -19,12 +25,15 @@ video {
   display: flex;
   justify-content: center;
   margin: 0 auto;
+  margin-top: 2rem;
   width: 30rem;
 }
 
 /* NAVBAR */
 #logo {
   width: 10rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 #navbar {
@@ -38,6 +47,12 @@ video {
 
 #navbar a {
   color: #c5c6c7;
+  border-radius: 2rem;
+}
+
+#navbar a.nav-link:hover {
+  background-color: #303d4d;
+  border-radius: 2rem;
 }
 
 #navbar-text {
@@ -60,7 +75,7 @@ form {
 #login-form {
   color: #c5c6c7;
   background-color: #1f2833;
-  max-width: 400px;
+  max-width: 700px;
 }
 
 #login {
@@ -77,43 +92,51 @@ form {
 /* MAIN PAGE */
 .home-leaderboard {
   background-color: #1f2833;
-  color: #757575;
   text-align: center;
   border-radius: 1rem;
   height: 100%;
-  height: 37rem;
   width: 50%;
   margin: auto;
   padding-top: 2em;
+  padding-bottom: 1em;
   margin-top: 3em;
 }
 
 #game-cards-container {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 .game-card {
   background-color: #121319 !important;
   text-align: center;
-  padding-top: 2.5rem;
-  width: 15rem;
+  padding: -2.5rem;
+  width: 38rem;
   /* height: 150px; */
-  border-radius: 5rem;
+  border-radius: 10rem !important;
   margin: auto;
   text-decoration: none;
 }
 
-/* .game-card-image {
-  margin: auto;
-  width: 50%;
+.game-card:hover {
+  background-color: #0a0b0f !important;
+  border-radius: 10rem !important;
+  /* filter: blur(5px); */
+  /* width: 42rem; */
+}
+
+/* .game-card-name {
+  position: absolute;
+  top: 40%;
+  bottom: 25%;
+  left: 25%;
+  right: 25%;
 } */
 
 /* PROFILE PAGE */
 .profile-page {
-  background-color: #1f2833;
-  color: #757575;
+  background-color: #273241;
   text-align: center;
   border-radius: 0.1rem;
   height: 100%;
@@ -124,17 +147,23 @@ form {
   margin-top: 3em;
 }
 
+.profile-page h1 {
+  background-color: #1f2833;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  margin-top: -2rem;
+}
+
 /* GAME PAGE */
 .leaderboard {
   background-color: #1f2833;
-  color: #757575;
   text-align: center;
   border-radius: 3rem;
   height: 100%;
-  height: 35rem;
   width: 50%;
   margin: auto;
   padding-top: 2em;
+  padding-bottom: 1em;
   margin-top: 3em;
 }
 
@@ -178,7 +207,7 @@ form {
 .footer .about {
   line-height: 20px;
   color: #84ceeb;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: normal;
   margin: 0;
 }
@@ -226,5 +255,5 @@ form {
 
 .footer .copyright {
   font-weight: normal;
-  font-size: 14px;
+  font-size: 17px;
 }

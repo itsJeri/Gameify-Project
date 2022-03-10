@@ -22,9 +22,6 @@ function MainPage({ games, regex }) {
     <div id='game-cards-container'>
      {gameCards}
     </div>
-    <div className='home-leaderboard'>
-      <Leaderboards />
-    </div>
     </>
   )
 }

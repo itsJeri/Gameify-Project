@@ -5,6 +5,7 @@ import MainPage from './MainPage';
 import ProfilePage from './ProfilePage';
 import Pathfinder from './Games/Pathfinder/Pathfinder';
 import NumberMemory from './Games/NumberMemory/NumberMemory';
+import LeaderboardsPage from './LeaderboardsPage';
 
 function Gameify({ currentUser }) {
   const [users, setUsers] = useState([]);
@@ -71,10 +72,10 @@ function Gameify({ currentUser }) {
         path='/'
         element={<MainPage games={games} regex={regex} />}
       />
-      {/* <Route
-        path='/games'
-        element={<GamesPage games={games} regex={regex} />}
-      /> */}
+      <Route
+        path='/leaderboards'
+        element={<LeaderboardsPage games={games} regex={regex} />}
+      />
       {gameRoutes}
       {userProfileRoutes}
       {/* <Route
