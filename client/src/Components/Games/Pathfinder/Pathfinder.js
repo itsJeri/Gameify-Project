@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Button } from 'react-bootstrap';
 import pathfinderLight from '../../../assets/pathfinder_light.png';
@@ -13,6 +13,10 @@ function Pathfinder({ game, user }) {
   const [userScore, setUserScore] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   function handleScoreSubmit(score) {
     // Waits for POST to GET leaderboard with new score

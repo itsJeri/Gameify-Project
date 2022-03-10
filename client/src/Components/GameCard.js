@@ -38,15 +38,13 @@ function GameCard({ game, urlName }) {
     <Card key={game.id} as={Link} to={`/games/${urlName}`} className='game-card' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
     <Card.Img src={image} />
     <Card.Body>
-      {showText ? 
+      {/* {showText ?  */}
         <div className='game-card-name'>
         <Card.Title style={{fontSize: '3rem'}} >{game.name}</Card.Title>
-        </div> :
+        </div> 
+        {/* :
         <p style={{fontSize: '3rem'}}>&nbsp;</p>
-      }
-
-      {/* <Card.Text>
-      </Card.Text> */}
+      } */}
     </Card.Body>
     </Card>
   )

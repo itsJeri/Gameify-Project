@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Graph from './Graph';
 
-import { Card, Accordion } from 'react-bootstrap';
+import { Accordion } from 'react-bootstrap';
 
 function ProfilePage({ userId, games }) {
   const [user, setUser] = useState({});
@@ -33,7 +33,7 @@ function ProfilePage({ userId, games }) {
       {/* <Accordion.Item eventKey={game.id} key={game.id}>
         <Accordion.Header> */}
           <div>
-           <h3>{game.name}</h3>
+           <h3 className='shake'>{game.name}</h3>
            <p>Average: {averageScore} | High Score: {highScore}</p>
           </div>
         {/* </Accordion.Header>
@@ -47,7 +47,9 @@ function ProfilePage({ userId, games }) {
 
   return (
     <div className='profile-page'>
-      <h1>{user.username}</h1>
+      <div className='profile-header'>
+        <h1 className='shake'>{user.username}</h1>
+      </div>
       <Accordion>
         {scoreCards}
       </Accordion>

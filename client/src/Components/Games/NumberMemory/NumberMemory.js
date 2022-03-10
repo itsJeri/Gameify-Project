@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import './NumberMemory.css'
 import numberMemoryLight from '../../../assets/number_memory_light.png';
@@ -12,6 +12,10 @@ function NumberMemory({ game, user }) {
   const [userScore, setUserScore] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   function handleScoreSubmit(score) {
     setIsSubmitting(true);

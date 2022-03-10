@@ -37,7 +37,7 @@ function PathfinderScoreboard({ game, userScore }) {
 
   return (
     <div className='scoreboard'>
-    <Table variant='dark' striped bordered hover size="sm">
+    <Table style={{color: '#c5c6c7'}} >
       <thead>
         <tr>
           <th>#</th>
@@ -55,7 +55,7 @@ function PathfinderScoreboard({ game, userScore }) {
           const user = score.user
           const isUserScore = score.id === userScore.id ? 'user-score' : ''
             return (
-              <tr key={score.id} className={isUserScore}>
+              <tr key={score.id} id={isUserScore}>
                 <td>{ranking}</td>
                 <Td to={`/${user.username}`}>{user.username}</Td>
                 <td>{score.score}</td>
