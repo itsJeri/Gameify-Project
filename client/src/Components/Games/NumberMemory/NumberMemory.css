@@ -1,10 +1,14 @@
 .number-memory-main {
   text-align: center;
-  margin-top: 5rem;
+  /* margin-top: 5rem; */
+}
+
+.number-memory-main img {
+  width: 15rem;
 }
 
 .number-memory-main form {
-  background-color: #0b0c10;
+  background-color: #121319;
   box-shadow: none;
 }
 

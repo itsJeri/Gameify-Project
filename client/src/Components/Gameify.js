@@ -3,7 +3,6 @@ import { Routes, Route } from 'react-router-dom';
 
 import MainPage from './MainPage';
 import ProfilePage from './ProfilePage';
-import GamesPage from './GamesPage';
 import Pathfinder from './Games/Pathfinder/Pathfinder';
 import NumberMemory from './Games/NumberMemory/NumberMemory';
 
@@ -29,7 +28,7 @@ function Gameify({ currentUser }) {
 
   // GAME ROUTE HANDLERS
 
-  const regex = (str) => {
+  function regex(str) {
     return(
       str.replace(/[^a-z0-9\s-]/ig,'')
       .trim()
@@ -70,12 +69,12 @@ function Gameify({ currentUser }) {
     <Routes>
       <Route
         path='/'
-        element={<MainPage games={games} />}
+        element={<MainPage games={games} regex={regex} />}
       />
-      <Route
+      {/* <Route
         path='/games'
         element={<GamesPage games={games} regex={regex} />}
-      />
+      /> */}
       {gameRoutes}
       {userProfileRoutes}
       {/* <Route

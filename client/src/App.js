@@ -23,6 +23,9 @@ function App() {
   }, []);
 
   if (!user) return <LoginPage setUser={setUser} />;
+  // if (!user) setUser({
+  //   username: 'Guest'
+  // })
 
   return (
     <>

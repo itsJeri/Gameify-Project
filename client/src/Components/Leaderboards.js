@@ -28,7 +28,7 @@ function Leaderboards() {
 
     return (
       <Tab style={{width: '90%', margin: 'auto'}} key={game.id} eventKey={game.name} title={game.name}>
-        <Table striped bordered hover size="sm">
+        <Table variant='dark' striped bordered hover size="sm">
           <thead>
             <tr>
               <th>#</th>

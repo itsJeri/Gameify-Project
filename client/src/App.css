@@ -3,19 +3,30 @@
 }
 
 #root {
-  background-color: #0b0c10;
+  background-color: #121319;
   color: #c5c6c7;
 }
 
 html {
-  background-color: #0b0c10;
+  background-color: #121319;
 }
 
 main {
   min-height: 55rem;
 }
 
+video {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  width: 30rem;
+}
+
 /* NAVBAR */
+#logo {
+  width: 10rem;
+}
+
 #navbar {
   background-color: #1f2833 !important;
 }
@@ -43,7 +54,7 @@ form {
 #form-container {
   place-items: center;
   margin-top: 160px;
-  background-color: #0b0c10;
+  background-color: #121319;
 }
 
 #login-form {
@@ -65,7 +76,7 @@ form {
 
 /* MAIN PAGE */
 .home-leaderboard {
-  background-color: #f1f1f1;
+  background-color: #1f2833;
   color: #757575;
   text-align: center;
   border-radius: 1rem;
@@ -77,9 +88,31 @@ form {
   margin-top: 3em;
 }
 
+#game-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+}
+
+.game-card {
+  background-color: #121319 !important;
+  text-align: center;
+  padding-top: 2.5rem;
+  width: 15rem;
+  /* height: 150px; */
+  border-radius: 5rem;
+  margin: auto;
+  text-decoration: none;
+}
+
+/* .game-card-image {
+  margin: auto;
+  width: 50%;
+} */
+
 /* PROFILE PAGE */
 .profile-page {
-  background-color: #f1f1f1;
+  background-color: #1f2833;
   color: #757575;
   text-align: center;
   border-radius: 0.1rem;
@@ -92,14 +125,8 @@ form {
 }
 
 /* GAME PAGE */
-#game-cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 3rem;
-}
-
 .leaderboard {
-  background-color: #f1f1f1;
+  background-color: #1f2833;
   color: #757575;
   text-align: center;
   border-radius: 3rem;
@@ -120,13 +147,9 @@ form {
   background-color: #84ceeb;
 }
 
-.pagination {
+.paginate {
   border-radius: 3rem;
   margin: 0 auto;
-}
-
-.page-item li {
-  background-color: gray;
 }
 
 /* FOOTER */
@@ -137,6 +160,7 @@ form {
   font-family: sans-serif;
   font-weight: bold;
   font-size: 16px;
+  margin-top: 3rem;
   padding: 50px;
 }
 

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import './NumberMemory.css'
+import numberMemoryLight from '../../../assets/number_memory_light.png';
 import { Button } from 'react-bootstrap';
 
 import NumberMemoryGame from './NumberMemoryGame';
@@ -44,6 +45,7 @@ function NumberMemory({ game, user }) {
   if (page === 'NumberMemory') {
     return (
       <div className='number-memory-main'>
+        <img src={numberMemoryLight}></img>
         <h1>Number Memory</h1>
         <h3>How many digits can you remember?</h3>
         <Button onClick={() => setPage('NumberMemoryGame')}>START</Button>

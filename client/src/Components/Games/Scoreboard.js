@@ -37,7 +37,7 @@ function PathfinderScoreboard({ game, userScore }) {
 
   return (
     <div className='scoreboard'>
-    <Table striped bordered hover size="sm">
+    <Table variant='dark' striped bordered hover size="sm">
       <thead>
         <tr>
           <th>#</th>
