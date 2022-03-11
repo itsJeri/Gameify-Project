@@ -52,6 +52,7 @@ function SignupForm({ setUser, setShowLogin }) {
           <Form.Control
             type='text'
             id='username'
+            placeholder='Enter Username'
             autoComplete='off'
             value={signupForm.username}
             onChange={e => handleOnChange(e)}
@@ -62,6 +63,7 @@ function SignupForm({ setUser, setShowLogin }) {
           <Form.Control
             type='password'
             id='password'
+            placeholder='Enter Password'
             value={signupForm.password}
             onChange={e => handleOnChange(e)}
             autoComplete='current-password'
@@ -72,6 +74,7 @@ function SignupForm({ setUser, setShowLogin }) {
           <Form.Control
             type='password'
             id='password_confirmation'
+            placeholder='Confirm Password'
             value={signupForm.passwordConfirmation}
             onChange={e => handleOnChange(e)}
             autoComplete='current-password'
@@ -82,6 +85,7 @@ function SignupForm({ setUser, setShowLogin }) {
           <Form.Control
             type='text'
             id='email'
+            placeholder='Enter E-mail'
             value={signupForm.email}
             onChange={e => handleOnChange(e)}
           />

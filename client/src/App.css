@@ -75,7 +75,13 @@ form {
 #login-form {
   color: #c5c6c7;
   background-color: #1f2833;
-  max-width: 700px;
+  width: 30%;
+  margin: 2rem;
+}
+
+#login-form img {
+  width: 50%;
+  margin: 1rem;
 }
 
 #login {
