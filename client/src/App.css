@@ -3,35 +3,61 @@
 }
 
 #root {
-  background-color: #0b0c10;
+  background-color: #121319;
   color: #c5c6c7;
 }
 
+body * {
+  /* font-family: "Syne Mono", monospace; */
+  font-family: "VT323";
+  font-size: 20px;
+}
+
 html {
-  background-color: #0b0c10;
+  background-color: #121319;
 }
 
 main {
   min-height: 55rem;
 }
 
+video {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 2rem;
+  width: 30rem;
+}
+
 /* NAVBAR */
+#logo {
+  width: 10rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
 #navbar {
   background-color: #1f2833 !important;
 }
 
-#navbar p {
+/* #navbar p {
   margin-top: 1rem;
-  color: #c5c6c7;
-}
+  color: #84ceeb;
+} */
 
 #navbar a {
-  color: #c5c6c7;
+  color: #84ceeb;
+  border-radius: 2rem;
+}
+
+#navbar a.nav-link:hover {
+  background-color: #303d4d;
+  border-radius: 2rem;
 }
 
 #navbar-text {
   margin-right: 5%;
-  color: #c5c6c7;
+  color: #84ceeb;
 }
 
 /* LOGIN & SIGNUP FORM */
@@ -43,13 +69,19 @@ form {
 #form-container {
   place-items: center;
   margin-top: 160px;
-  background-color: #0b0c10;
+  background-color: #121319;
 }
 
 #login-form {
   color: #c5c6c7;
   background-color: #1f2833;
-  max-width: 400px;
+  width: 30%;
+  margin: 2rem;
+}
+
+#login-form img {
+  width: 50%;
+  margin: 1rem;
 }
 
 #login {
@@ -65,22 +97,53 @@ form {
 
 /* MAIN PAGE */
 .home-leaderboard {
-  background-color: #f1f1f1;
-  color: #757575;
+  background-color: #1f2833;
   text-align: center;
   border-radius: 1rem;
   height: 100%;
-  height: 37rem;
   width: 50%;
   margin: auto;
   padding-top: 2em;
+  padding-bottom: 1em;
   margin-top: 3em;
 }
 
+#game-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.game-card {
+  background-color: #121319 !important;
+  text-align: center;
+  padding: -2.5rem;
+  width: 38rem;
+  /* height: 150px; */
+  border-radius: 10rem !important;
+  margin: auto;
+  text-decoration: none;
+  border: none !important;
+}
+
+.game-card:hover {
+  background-color: #0a0b0f !important;
+  /* border-radius: 10rem !important; */
+  /* filter: blur(5px); */
+  /* width: 42rem; */
+}
+
+/* .game-card-name {
+  position: absolute;
+  top: 40%;
+  bottom: 25%;
+  left: 25%;
+  right: 25%;
+} */
+
 /* PROFILE PAGE */
 .profile-page {
-  background-color: #f1f1f1;
-  color: #757575;
+  background-color: #273241;
   text-align: center;
   border-radius: 0.1rem;
   height: 100%;
@@ -91,23 +154,23 @@ form {
   margin-top: 3em;
 }
 
-/* GAME PAGE */
-#game-cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 3rem;
+.profile-header {
+  background-color: #1f2833;
+  margin-bottom: 2rem;
+  padding: 2rem;
+  margin-top: -3rem;
 }
 
+/* GAME PAGE */
 .leaderboard {
-  background-color: #f1f1f1;
-  color: #757575;
+  background-color: #1f2833;
   text-align: center;
   border-radius: 3rem;
   height: 100%;
-  height: 35rem;
   width: 50%;
   margin: auto;
   padding-top: 2em;
+  padding-bottom: 1em;
   margin-top: 3em;
 }
 
@@ -116,17 +179,18 @@ form {
   margin: auto;
 }
 
-.user-score {
-  background-color: #84ceeb;
+#user-score {
+  background-color: #84ceeb !important;
+  color: black;
 }
 
-.pagination {
+/* a.page-link {
+  background-color: rgb(54, 54, 54);
+} */
+
+.paginate {
   border-radius: 3rem;
   margin: 0 auto;
-}
-
-.page-item li {
-  background-color: gray;
 }
 
 /* FOOTER */
@@ -137,6 +201,7 @@ form {
   font-family: sans-serif;
   font-weight: bold;
   font-size: 16px;
+  margin-top: 3rem;
   padding: 50px;
 }
 
@@ -154,7 +219,7 @@ form {
 .footer .about {
   line-height: 20px;
   color: #84ceeb;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: normal;
   margin: 0;
 }
@@ -202,5 +267,92 @@ form {
 
 .footer .copyright {
   font-weight: normal;
-  font-size: 14px;
+  font-size: 17px;
+}
+
+.game-card-name {
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  font-size: 10vw;
+  font-weight: 900;
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  background-size: 120% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  -ms-background-clip: text;
+  -ms-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+
+  /* background-image: linear-gradient(45deg, 
+                    #7794ff, 
+                    #44107A,
+                    #FF1361,
+                    #FFF800); */
+  /* animation: .8s shake infinite alternate; */
+  background: linear-gradient(
+    120deg,
+    hsl(188, 100%, 50%) 10%,
+    hsl(187, 100%, 59%) 10%,
+    hsl(191, 94%, 54%) 25%,
+    hsl(177, 100%, 64%) 25%,
+    hsl(186, 100%, 69%) 40%,
+    hsl(226, 87%, 64%) 40%,
+    hsl(259, 100%, 74%) 55%,
+    hsl(177, 100%, 64%) 55%,
+    hsl(256, 92%, 85%) 70%,
+    hsl(258, 93%, 73%) 70%
+    /* hsl(287, 100%, 76%) 85%,
+    hsl(296, 99%, 47%) 85%, */
+    /* hsl(300, 100%, 85%) 100%,
+    hsl(302, 79%, 61%) 100% */
+  );
+
+  color: #fff;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: 100s Gradient linear infinite, 3s Grow ease alternate infinite,
+    0.8s Shake infinite alternate;
+}
+
+.shake {
+  animation: 0.8s Shake infinite alternate;
+}
+
+@keyframes Shake {
+  0% {
+    transform: skewX(-15deg);
+  }
+  5% {
+    transform: skewX(15deg);
+  }
+  10% {
+    transform: skewX(-15deg);
+  }
+  15% {
+    transform: skewX(15deg);
+  }
+  20% {
+    transform: skewX(0deg);
+  }
+  100% {
+    transform: skewX(0deg);
+  }
+}
+
+@keyframes Gradient {
+  100% {
+    background-position: 100vw 0px;
+  }
+}
+
+@keyframes Grow {
+  100% {
+    transform: scale(1.1);
+  }
 }

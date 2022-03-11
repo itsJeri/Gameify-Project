@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { Button } from 'react-bootstrap';
+import pathfinderLight from '../../../assets/pathfinder_light.png';
 
 import PathfinderGame from './PathfinderGame';
 import PathfinderSandbox from './PathfinderSandbox';
@@ -8,10 +9,14 @@ import PathfinderScoreboard from './PathfinderScoreboard';
 import PathfinderVersus from './PathfinderVersus';
 
 function Pathfinder({ game, user }) {
-  const [page, setPage] = useState('Pathfinder');
+  const [page, setPage] = useState('PathfinderGame');
   const [userScore, setUserScore] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState([]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   function handleScoreSubmit(score) {
     // Waits for POST to GET leaderboard with new score
@@ -46,6 +51,7 @@ function Pathfinder({ game, user }) {
   if (page === 'Pathfinder') {
     return (
       <div className='pathfinder-main'>
+        <img src={pathfinderLight}></img>
         <h1>Welcome to Pathfinder</h1>
         <Button onClick={() => setPage('PathfinderGame')}>Classic</Button>
         {/* <Button onClick={() => setPage('PathfinderVersus')}>Versus AI</Button> */}

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 
+import logo from '../../assets/logo.png'
+
 function SignupForm({ setUser, setShowLogin }) {
   const [signupForm, setSignupForm] = useState({
     username: '',
@@ -44,11 +46,13 @@ function SignupForm({ setUser, setShowLogin }) {
   return (
     <div className='d-flex justify-content-center' id='form-container'>
       <Form className='text-center rounded p-4 p-sm-3' onSubmit={e => handleSubmit(e)} id='login-form'>
+      <img id='logo' src={logo} alt='logo'/>
         <Form.Group className='mb-3'>
           <Form.Label htmlFor='username'>Username</Form.Label>
           <Form.Control
             type='text'
             id='username'
+            placeholder='Enter Username'
             autoComplete='off'
             value={signupForm.username}
             onChange={e => handleOnChange(e)}
@@ -59,6 +63,7 @@ function SignupForm({ setUser, setShowLogin }) {
           <Form.Control
             type='password'
             id='password'
+            placeholder='Enter Password'
             value={signupForm.password}
             onChange={e => handleOnChange(e)}
             autoComplete='current-password'
@@ -69,6 +74,7 @@ function SignupForm({ setUser, setShowLogin }) {
           <Form.Control
             type='password'
             id='password_confirmation'
+            placeholder='Confirm Password'
             value={signupForm.passwordConfirmation}
             onChange={e => handleOnChange(e)}
             autoComplete='current-password'
@@ -79,6 +85,7 @@ function SignupForm({ setUser, setShowLogin }) {
           <Form.Control
             type='text'
             id='email'
+            placeholder='Enter E-mail'
             value={signupForm.email}
             onChange={e => handleOnChange(e)}
           />

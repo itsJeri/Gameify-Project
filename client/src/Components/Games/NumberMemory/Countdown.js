@@ -20,7 +20,7 @@ function Countdown({ setAnswerPage }) {
   }, [countDown])
 
   return (
-    <ProgressBar now={now} />
+    <ProgressBar style={{width: '50%', margin: 'auto'}} now={now} />
   )
 }
 

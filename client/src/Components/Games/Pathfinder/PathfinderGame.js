@@ -257,9 +257,10 @@ function PathfinderGame({ setPage, handleScoreSubmit }) {
 
   return (
     <div className = 'd-grid gap-2'>
-      <button onClick={() => setPage('Pathfinder')}>
-        Return to Main Menu
+      <button onClick={() => setPage('PathfinderSandbox')}>
+        To Sandbox Mode
       </button>
+      <p style={{textAlign: 'center', marginTop: '3%', marginBottom: '-2%'}}>Click or drag the shortest path.</p>
       <div className='main'>
         <div className='grid'>
           <div className='d-flex'>

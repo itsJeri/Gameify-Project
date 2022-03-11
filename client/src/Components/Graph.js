@@ -12,7 +12,7 @@ function Graph({ recentScores }) {
 
   return (
     <div>
-      <h3>Recent Plays</h3>
+      {/* <h3>Recent Plays</h3> */}
       <Line
         data={{
           labels: recentDates,

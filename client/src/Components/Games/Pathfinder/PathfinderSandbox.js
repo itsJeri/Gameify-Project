@@ -195,8 +195,8 @@ function PathfinderSandbox({ setPage }) {
 
   return (
     <div className = 'd-grid gap-2'>
-      <button onClick={() => setPage('Pathfinder')}>
-        Return to Main Menu
+      <button onClick={() => setPage('PathfinderGame')}>
+        Return to Game
       </button>
       <p style={{textAlign: 'center', marginTop: '3%', marginBottom: '-2%'}}>Click or drag around the grid to create your own walls!</p>
       <div className='main'>

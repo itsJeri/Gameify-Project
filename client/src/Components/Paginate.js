@@ -24,7 +24,7 @@ function Paginate({ scoresPerPage, totalScores, currentPage, setCurrentPage }) {
   }
 
   return (
-    <nav>
+    <nav className='paginate'>
       <Pagination>
         <Pagination.First onClick={() => setCurrentPage(1)} />
         {displayedPages().map(number => {
