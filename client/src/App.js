@@ -28,13 +28,13 @@ function App() {
   // })
 
   return (
-    <>
+    <div id='page-container'>
       <NavBar user={user} setUser={setUser} />
       <main>
         <Gameify currentUser={user} />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
 

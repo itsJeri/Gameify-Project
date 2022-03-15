@@ -17,16 +17,20 @@ html {
   background-color: #121319;
 }
 
-main {
-  min-height: 55rem;
-}
-
 video {
   display: flex;
   justify-content: center;
   margin: 0 auto;
   margin-top: 2rem;
   width: 30rem;
+}
+
+#page-container {
+  position: relative;
+  min-height: 100vh;
+  display: block;
+  overflow: hidden;
+  padding-bottom: 15rem;
 }
 
 /* NAVBAR */
@@ -39,11 +43,6 @@ video {
 #navbar {
   background-color: #1f2833 !important;
 }
-
-/* #navbar p {
-  margin-top: 1rem;
-  color: #84ceeb;
-} */
 
 #navbar a {
   color: #84ceeb;
@@ -102,6 +101,7 @@ form {
   border-radius: 1rem;
   height: 100%;
   width: 50%;
+  max-width: 70rem;
   margin: auto;
   padding-top: 2em;
   padding-bottom: 1em;
@@ -111,7 +111,9 @@ form {
 #game-cards-container {
   display: flex;
   flex-wrap: wrap;
+  margin: auto;
   margin-top: 2rem;
+  max-width: 120rem;
 }
 
 .game-card {
@@ -149,6 +151,7 @@ form {
   height: 100%;
   min-height: 50rem;
   width: 70%;
+  max-width: 70rem;
   margin: auto;
   padding-top: 2em;
   margin-top: 3em;
@@ -161,6 +164,10 @@ form {
   margin-top: -3rem;
 }
 
+#graph-container {
+  padding-bottom: 5rem;
+}
+
 /* GAME PAGE */
 .leaderboard {
   background-color: #1f2833;
@@ -168,6 +175,7 @@ form {
   border-radius: 3rem;
   height: 100%;
   width: 50%;
+  max-width: 70rem;
   margin: auto;
   padding-top: 2em;
   padding-bottom: 1em;
@@ -201,8 +209,9 @@ form {
   font-family: sans-serif;
   font-weight: bold;
   font-size: 16px;
-  margin-top: 3rem;
   padding: 50px;
+  position: absolute;
+  bottom: 0;
 }
 
 .footer .footer-left,
@@ -221,7 +230,7 @@ form {
   color: #84ceeb;
   font-size: 18px;
   font-weight: normal;
-  margin: 0;
+  margin-top: 15px;
 }
 
 .footer .about span {
@@ -307,9 +316,9 @@ form {
     hsl(177, 100%, 64%) 55%,
     hsl(256, 92%, 85%) 70%,
     hsl(258, 93%, 73%) 70%
-    /* hsl(287, 100%, 76%) 85%,
+      /* hsl(287, 100%, 76%) 85%,
     hsl(296, 99%, 47%) 85%, */
-    /* hsl(300, 100%, 85%) 100%,
+      /* hsl(300, 100%, 85%) 100%,
     hsl(302, 79%, 61%) 100% */
   );
 

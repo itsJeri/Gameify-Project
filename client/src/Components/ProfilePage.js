@@ -29,7 +29,7 @@ function ProfilePage({ userId, games }) {
     const recentScores = gameScores.slice(0, 5).reverse()
 
     return (
-      <div style={{marginBottom: '5rem'}}>
+      <div id='graph-container'>
       {/* <Accordion.Item eventKey={game.id} key={game.id}>
         <Accordion.Header> */}
           <div>

@@ -1,5 +1,9 @@
+import { Chart } from 'chart.js';
 import React from 'react';
-import { Line } from 'react-chartjs-2';
+import { Line, defaults } from 'react-chartjs-2';
+
+// defaults.global.legend.position = 'top'
+// defaults.global.defaultFontColor = '#c5c6c7'
 
 function Graph({ recentScores }) {
   const recentDates = recentScores.map(score => new Date(score.created_at).toLocaleDateString('en-GB', {
@@ -18,12 +22,62 @@ function Graph({ recentScores }) {
           labels: recentDates,
           datasets: [
             {
+              datalabels: {
+                listeners: {
+                  click: function(context) {
+                    console.log('label ' + context.dataIndex + ' has been clicked');
+                  }
+                }
+              },
+              // legend
               label: 'Score',
               data: recentPlays,
-              backgroundColor: 'rgba(132, 206, 235, 0.5)'
+              // Original backgroundColor: 'rgba(132, 206, 235, 0.5)'
+              backgroundColor: 'rgba(0, 190, 230, 0.5)',
+              borderColor: 'rgba(0, 190, 218, 1)',
+              borderWidth: 2
             }
           ]
         }}
+        options={{
+          legend: {
+            // enable or disable legend
+            display: false,
+          },
+          scales: {
+            xAxes: [{
+              ticks: {
+                beginAtZero: true,
+                fontColor: '#c5c6c7'
+              },
+            }],
+            yAxes: [{
+              ticks: {
+                beginAtZero: true,
+                fontColor: '#c5c6c7'
+              },
+            }],
+          },
+          plugins: {
+            dataLabels: {
+              listeners: {
+                enter: function(context) {
+                  context.hovered = true;
+                  return true;
+                },
+                leave: function(context) {
+                  context.hovered = false;
+                  return true;
+                }
+              },
+              color: function(context) {
+                return context.hovered ? 'red' : 'gray';
+              }
+            }
+          }
+        }}
+        // height={200}
+        // width={400}
       />
     </div>
   )
