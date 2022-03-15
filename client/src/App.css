@@ -295,30 +295,13 @@ form {
                     #FF1361,
                     #FFF800); */
   /* animation: .8s shake infinite alternate; */
-  background: linear-gradient(
-    120deg,
-    hsl(188, 100%, 50%) 10%,
-    hsl(187, 100%, 59%) 10%,
-    hsl(191, 94%, 54%) 25%,
-    hsl(177, 100%, 64%) 25%,
-    hsl(186, 100%, 69%) 40%,
-    hsl(226, 87%, 64%) 40%,
-    hsl(259, 100%, 74%) 55%,
-    hsl(177, 100%, 64%) 55%,
-    hsl(256, 92%, 85%) 70%,
-    hsl(258, 93%, 73%) 70%
-    /* hsl(287, 100%, 76%) 85%,
-    hsl(296, 99%, 47%) 85%, */
-    /* hsl(300, 100%, 85%) 100%,
-    hsl(302, 79%, 61%) 100% */
-  );
+
 
   color: #fff;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation:  3s Grow ease alternate infinite,
+  animation: 100s Gradient linear infinite, 3s Grow ease alternate infinite,
     0.8s Shake infinite alternate;
-    /* 100s Gradient linear infinite, */
 }
 
 .shake {
