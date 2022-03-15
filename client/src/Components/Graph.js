@@ -33,7 +33,7 @@ function Graph({ recentScores }) {
               label: 'Score',
               data: recentPlays,
               // Original backgroundColor: 'rgba(132, 206, 235, 0.5)'
-              backgroundColor: 'rgba(0, 190, 230, 0.5)',
+              backgroundColor: 'rgba(74, 2, 231, 0.5)',
               borderColor: 'rgba(0, 190, 218, 1)',
               borderWidth: 2
             }
@@ -48,14 +48,24 @@ function Graph({ recentScores }) {
             xAxes: [{
               ticks: {
                 beginAtZero: true,
-                fontColor: '#c5c6c7'
+                fontColor: '#c5c6c7',
+                fontFamily: 'VT323',
+                fontSize: 18
               },
+              gridLines: {
+                color: '#84ceeb'
+              }
             }],
             yAxes: [{
               ticks: {
                 beginAtZero: true,
-                fontColor: '#c5c6c7'
+                fontColor: '#c5c6c7',
+                fontFamily: 'VT323',
+                fontSize: 18
               },
+              gridLines: {
+                color: '#84ceeb'
+              }
             }],
           },
           plugins: {
