@@ -316,8 +316,9 @@ form {
   color: #fff;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: 100s Gradient linear infinite, 3s Grow ease alternate infinite,
+  animation:  3s Grow ease alternate infinite,
     0.8s Shake infinite alternate;
+    /* 100s Gradient linear infinite, */
 }
 
 .shake {
