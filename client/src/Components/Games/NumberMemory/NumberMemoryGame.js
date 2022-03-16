@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 
 import Countdown from './Countdown';
 
-function NumberMemoryGame({ setPage, handleScoreSubmit }) {
+function NumberMemoryGame({ handleScoreSubmit, errors }) {
   const [answerPage, setAnswerPage] = useState(false);
   const [gameOver, setGameOver] = useState(false);
   const [correctNum, setCorrectNum] = useState(null);
@@ -25,6 +25,7 @@ function NumberMemoryGame({ setPage, handleScoreSubmit }) {
         <>
           <h1>GAME OVER</h1>
           <h3>Score: {score}</h3>
+          {errors.map(error => <p className='errors'>{error}</p>)}
           <Button onClick={() => handleScoreboard()}>Submit Score</Button>
         </>
       )
@@ -66,7 +67,6 @@ function NumberMemoryGame({ setPage, handleScoreSubmit }) {
 
   function handleScoreboard() {
     handleScoreSubmit(score);
-    setPage('NumberMemoryScoreboard')
   }
 
   return (

@@ -2,6 +2,9 @@ import { useState, useEffect, useContext } from 'react';
 import { Context } from '../context/Context';
 import { Routes, Route } from 'react-router-dom';
 
+import LoginPage from './LoginPage';
+import LoginForm from './Login/LoginForm';
+import SignupForm from './Login/SignupForm';
 import MainPage from './MainPage';
 import ProfilePage from './ProfilePage';
 import Pathfinder from './Games/Pathfinder/Pathfinder';
@@ -27,7 +30,7 @@ function Gameify() {
       })
   }, []);
 
-  if (isLoading) return <p>Loading...</p>
+  if (isLoading) return null;
 
   // GAME ROUTE HANDLERS
 
@@ -73,6 +76,14 @@ function Gameify() {
       <Route
         path='/'
         element={<MainPage />}
+      />
+      <Route
+        path='/login'
+        element={<LoginForm />}
+      />
+      <Route
+        path='/signup'
+        element={<SignupForm />}
       />
       <Route
         path='/leaderboards'

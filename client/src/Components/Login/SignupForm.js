@@ -1,10 +1,11 @@
 import { useState, useContext } from 'react';
 import { Context } from '../../context/Context';
-import { Form, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
+import { Form, Button } from 'react-bootstrap';
 import logo from '../../assets/logo.png'
 
-function SignupForm({ setShowLogin }) {
+function SignupForm() {
   const [signupForm, setSignupForm] = useState({
     username: '',
     password: '',
@@ -14,7 +15,7 @@ function SignupForm({ setShowLogin }) {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const {setUser} = useContext(Context);
+  const {setUser, navigate} = useContext(Context);
 
   function handleOnChange(e) {
     setSignupForm({
@@ -38,7 +39,10 @@ function SignupForm({ setShowLogin }) {
         setIsLoading(false);
         if (r.ok) {
           r.json()
-          .then(user => setUser(user));
+          .then(user => {
+            setUser(user);
+            navigate('/');
+          });
         } else {
           r.json()
           .then(e => setErrors(e.errors));
@@ -104,7 +108,7 @@ function SignupForm({ setShowLogin }) {
         }
         <Button type='submit' style={{marginTop: '10px', marginBottom: '2rem'}}>{isLoading ? 'Loading...' : 'Sign Up'}</Button>
             <p>Already have an account? </p>
-        <Button onClick={() => setShowLogin(true)}>
+        <Button as={Link} to='/login'>
             Log In
         </Button>
       </Form>

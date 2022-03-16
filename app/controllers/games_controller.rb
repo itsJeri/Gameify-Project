@@ -1,4 +1,6 @@
 class GamesController < ApplicationController
+  skip_before_action :authorize, only: [:index, :leaderboards_index, :leaderboards_show]
+
   def index
     games = Game.all
     render json: games
