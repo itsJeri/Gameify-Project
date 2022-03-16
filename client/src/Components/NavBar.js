@@ -1,10 +1,12 @@
-import React from 'react';
+import { useContext } from 'react';
+import { Context } from '../context/Context';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 
 import logo from '../assets/logo.png'
 
-function NavBar({ user, setUser }) {
+function NavBar() {
+  const {user, setUser} = useContext(Context);
 
   function handleLogout() {
     fetch('/logout', { method: 'DELETE' })

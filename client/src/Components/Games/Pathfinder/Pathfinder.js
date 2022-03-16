@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { Context } from '../../../context/Context';
 
 import { Button } from 'react-bootstrap';
 import pathfinderLight from '../../../assets/pathfinder_light.png';
@@ -8,11 +9,13 @@ import PathfinderSandbox from './PathfinderSandbox';
 import PathfinderScoreboard from './PathfinderScoreboard';
 import PathfinderVersus from './PathfinderVersus';
 
-function Pathfinder({ game, user }) {
+function Pathfinder({ game }) {
   const [page, setPage] = useState('PathfinderGame');
   const [userScore, setUserScore] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState([]);
+
+  const {user} = useContext(Context);
 
   useEffect(() => {
     window.scrollTo(0, 0)

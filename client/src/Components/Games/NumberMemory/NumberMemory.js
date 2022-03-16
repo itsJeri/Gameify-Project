@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { Context } from '../../../context/Context';
 
 import './NumberMemory.css'
 import numberMemoryLight from '../../../assets/number_memory_light.png';
@@ -7,11 +8,13 @@ import { Button } from 'react-bootstrap';
 import NumberMemoryGame from './NumberMemoryGame';
 import NumberMemoryScoreboard from './NumberMemoryScoreboard';
 
-function NumberMemory({ game, user }) {
+function NumberMemory({ game }) {
   const [page, setPage] = useState('NumberMemory');
   const [userScore, setUserScore] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState([]);
+
+  const {user} = useContext(Context);
 
   useEffect(() => {
     window.scrollTo(0, 0)

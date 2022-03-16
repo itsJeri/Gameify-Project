@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { Context } from './context/Context';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,7 +10,7 @@ import Gameify from './Components/Gameify';
 import Footer from './Components/Footer';
 
 function App() {
-  const [user, setUser] = useState(null);
+  const {user, setUser} = useContext(Context)
 
   useEffect(() => {
     // auto-login
@@ -22,16 +23,16 @@ function App() {
     });
   }, []);
 
-  if (!user) return <LoginPage setUser={setUser} />;
+  if (!user) return <LoginPage />;
   // if (!user) setUser({
   //   username: 'Guest'
   // })
 
   return (
     <div id='page-container'>
-      <NavBar user={user} setUser={setUser} />
+      <NavBar />
       <main>
-        <Gameify currentUser={user} />
+        <Gameify />
       </main>
       <Footer />
     </div>

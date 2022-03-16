@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { Context } from '../context/Context';
 import { Routes, Route } from 'react-router-dom';
 
 import MainPage from './MainPage';
@@ -7,10 +8,11 @@ import Pathfinder from './Games/Pathfinder/Pathfinder';
 import NumberMemory from './Games/NumberMemory/NumberMemory';
 import LeaderboardsPage from './LeaderboardsPage';
 
-function Gameify({ currentUser }) {
+function Gameify() {
   const [users, setUsers] = useState([]);
-  const [games, setGames] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const {games, setGames} = useContext(Context);
 
   useEffect(() => {
     fetch('/users')
@@ -51,7 +53,7 @@ function Gameify({ currentUser }) {
       <Route
         key={game.id}
         path={`/games/${urlName}`}
-        element={<GameComponent game={game} user={currentUser}/>}
+        element={<GameComponent game={game} />}
       />
     )
   })
@@ -61,7 +63,7 @@ function Gameify({ currentUser }) {
       <Route
         key={user.id}
         path={`/${user.username}`}
-        element={<ProfilePage userId={user.id} games={games} />}
+        element={<ProfilePage userId={user.id} />}
       />
     )
   })
@@ -70,11 +72,11 @@ function Gameify({ currentUser }) {
     <Routes>
       <Route
         path='/'
-        element={<MainPage games={games} regex={regex} />}
+        element={<MainPage />}
       />
       <Route
         path='/leaderboards'
-        element={<LeaderboardsPage games={games} regex={regex} />}
+        element={<LeaderboardsPage />}
       />
       {gameRoutes}
       {userProfileRoutes}

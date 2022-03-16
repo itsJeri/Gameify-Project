@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { Context } from '../context/Context';
 import Leaderboards from './Leaderboards';
 import GameCard from './GameCard';
 
 import logo from '../assets/logo2.mp4'
 
-function MainPage({ games, regex }) {
+function MainPage() {
+  const {games, regex} = useContext(Context);
 
   const gameCards = games.map(game => {
     const urlName = regex(game.name);

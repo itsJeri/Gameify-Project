@@ -4,14 +4,14 @@ import SignupForm from './Login/SignupForm';
 
 import logo from '../assets/logo.png';
 
-function LoginPage({ setUser }) {
+function LoginPage() {
   const [showLogin, setShowLogin] = useState(true);
 
   return (
       <div>
         {showLogin ?
-          <LoginForm setUser={setUser} setShowLogin={setShowLogin}/> :
-          <SignupForm setUser={setUser} setShowLogin={setShowLogin}/>
+          <LoginForm setShowLogin={setShowLogin}/> :
+          <SignupForm setShowLogin={setShowLogin}/>
         }
       </div>
   )

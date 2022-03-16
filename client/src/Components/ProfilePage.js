@@ -1,11 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { Context } from '../context/Context';
 import Graph from './Graph';
 
 import { Accordion } from 'react-bootstrap';
 
-function ProfilePage({ userId, games }) {
+function ProfilePage({ userId }) {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+
+  const {games} = useContext(Context);
 
   useEffect(() => {
     fetch(`/profiles/${userId}`)

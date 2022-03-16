@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { Context } from '../../context/Context';
 import { Form, Button } from 'react-bootstrap';
 
 import logo from '../../assets/logo.png'
 
-function SignupForm({ setUser, setShowLogin }) {
+function SignupForm({ setShowLogin }) {
   const [signupForm, setSignupForm] = useState({
     username: '',
     password: '',
@@ -12,6 +13,8 @@ function SignupForm({ setUser, setShowLogin }) {
   });
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const {setUser} = useContext(Context);
 
   function handleOnChange(e) {
     setSignupForm({
