@@ -19,7 +19,7 @@ function ProfilePage({ userId }) {
       })
   }, [userId]);
   
-  if (isLoading) return <p>loading...</p>
+  if (isLoading) return null;
 
   const scoreCards = games.map(game => {
     const gameScores = user.scores.filter(score => score.game_id === game.id)

@@ -21,6 +21,8 @@ function NumberMemory({ game }) {
   }, [])
 
   function handleScoreSubmit(score) {
+    if (!user) setErrors(['Sorry, you need to be signed in to submit a score.'])
+    // Waits for POST to GET leaderboard with new score
     setIsSubmitting(true);
     fetch('/scores', {
       method: 'POST',
@@ -39,6 +41,7 @@ function NumberMemory({ game }) {
             setUserScore(newScore);
             setIsSubmitting(false);
             setErrors([]);
+            setPage('NumberMemoryScoreboard');
           })
         } else {
           r.json().then(err => {
@@ -60,7 +63,7 @@ function NumberMemory({ game }) {
     )
   }
 
-  if (page === 'NumberMemoryGame') return <NumberMemoryGame setPage={setPage} handleScoreSubmit={handleScoreSubmit}/>
+  if (page === 'NumberMemoryGame') return <NumberMemoryGame handleScoreSubmit={handleScoreSubmit} errors={errors}/>
   if (page === 'NumberMemoryScoreboard') return <NumberMemoryScoreboard setPage={setPage} game={game} userScore={userScore} isSubmitting={isSubmitting} />
 }
 

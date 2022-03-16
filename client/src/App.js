@@ -4,13 +4,14 @@ import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import LoginPage from './Components/LoginPage';
 import NavBar from './Components/NavBar';
 import Gameify from './Components/Gameify';
 import Footer from './Components/Footer';
 
 function App() {
-  const {user, setUser} = useContext(Context)
+  const {user, setUser} = useContext(Context);
+
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     // auto-login
@@ -18,15 +19,11 @@ function App() {
       if (r.ok) {
         r.json().then(user => {
           setUser(user)
+          setIsLoading(false);
         });
       }
     });
   }, []);
-
-  if (!user) return <LoginPage />;
-  // if (!user) setUser({
-  //   username: 'Guest'
-  // })
 
   return (
     <div id='page-container'>

@@ -22,6 +22,7 @@ function Pathfinder({ game }) {
   }, [])
 
   function handleScoreSubmit(score) {
+    if (!user) setErrors(['Sorry, you need to be signed in to submit a score.'])
     // Waits for POST to GET leaderboard with new score
     setIsSubmitting(true);
     fetch('/scores', {
@@ -41,6 +42,7 @@ function Pathfinder({ game }) {
             setUserScore(newScore);
             setIsSubmitting(false);
             setErrors([]);
+            setPage('PathfinderScoreboard')
           })
         } else {
           r.json().then(err => {
@@ -63,10 +65,10 @@ function Pathfinder({ game }) {
     )
   }
 
-  if (page === 'PathfinderGame') return <PathfinderGame setPage={setPage} handleScoreSubmit={handleScoreSubmit}/>
+  if (page === 'PathfinderGame') return <PathfinderGame setPage={setPage} handleScoreSubmit={handleScoreSubmit} errors={errors} />
   if (page === 'PathfinderVersus') return <PathfinderVersus setPage={setPage} />
-  if (page === 'PathfinderSandbox') return <PathfinderSandbox setPage={setPage}/>
-  if (page === 'PathfinderScoreboard') return <PathfinderScoreboard setPage={setPage} game={game} userScore={userScore} isSubmitting={isSubmitting}/>
+  if (page === 'PathfinderSandbox') return <PathfinderSandbox setPage={setPage} />
+  if (page === 'PathfinderScoreboard') return <PathfinderScoreboard setPage={setPage} game={game} userScore={userScore} isSubmitting={isSubmitting} />
 }
 
 export default Pathfinder;

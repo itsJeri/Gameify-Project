@@ -55,7 +55,7 @@ video {
 }
 
 #navbar-text {
-  margin-right: 5%;
+  margin-right: 2%;
   color: #84ceeb;
 }
 
@@ -67,14 +67,15 @@ form {
 
 #form-container {
   place-items: center;
-  margin-top: 160px;
+  /* margin-top: 160px; */
+  margin: 5rem;
   background-color: #121319;
 }
 
 #login-form {
   color: #c5c6c7;
   background-color: #1f2833;
-  width: 30%;
+  width: 35%;
   margin: 2rem;
 }
 
@@ -133,6 +134,10 @@ form {
   /* border-radius: 10rem !important; */
   /* filter: blur(5px); */
   /* width: 42rem; */
+}
+
+.game-card img {
+  border-radius: 10rem;
 }
 
 /* .game-card-name {
@@ -199,6 +204,11 @@ form {
 .paginate {
   border-radius: 3rem;
   margin: 0 auto;
+}
+
+.score {
+  inline-size: 20%;
+  overflow: hidden;
 }
 
 /* FOOTER */

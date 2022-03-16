@@ -1,10 +1,13 @@
 import { createContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const Context = createContext()
 
 function ContextProvider(props) {
   const [user, setUser] = useState(null);
   const [games, setGames] = useState([]);
+
+  const navigate = useNavigate();
 
   function regex(str) {
     return(
@@ -20,6 +23,7 @@ function ContextProvider(props) {
     setUser,
     games,
     setGames,
+    navigate,
     regex
   }
 

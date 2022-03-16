@@ -1,10 +1,11 @@
 import { useState, useContext } from 'react';
 import { Context } from '../../context/Context';
-import { Form, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
+import { Form, Button } from 'react-bootstrap';
 import logo from '../../assets/logo.png'
 
-function LoginForm({ setShowLogin }) {
+function LoginForm() {
   const [loginForm, setLoginForm] = useState({
     username: '',
     password: ''
@@ -12,7 +13,7 @@ function LoginForm({ setShowLogin }) {
   const [errors, setErrors] = useState([]);
   const [isLoading , setIsLoading] = useState(false);
 
-  const {setUser} = useContext(Context);
+  const {setUser, navigate} = useContext(Context);
 
   function handleOnChange(e) {
     setLoginForm({
@@ -35,7 +36,10 @@ function LoginForm({ setShowLogin }) {
         setIsLoading(false);
         if (r.ok) {
           r.json()
-          .then(user => setUser(user));
+          .then(user => {
+            setUser(user);
+            navigate('/');
+          });
         } else {
           r.json()
           .then(e => setErrors(e.errors))
@@ -79,7 +83,7 @@ function LoginForm({ setShowLogin }) {
             {isLoading ? 'Loading...' : 'Login'}
         </Button>
             <p>Don't have an account?</p>
-        <Button variant='primary' onClick={() => setShowLogin(false)}>
+        <Button variant='primary' as={Link} to={'/signup'}>
             Sign Up
         </Button>
       </Form>

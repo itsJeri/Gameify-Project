@@ -5,7 +5,7 @@ import { dijkstra, getNodesInShortestPathOrder } from './dijkstra/dijkstra';
 import './Pathfinder.css';
 import { Button } from 'react-bootstrap';
 
-function PathfinderGame({ setPage, handleScoreSubmit }) {
+function PathfinderGame({ setPage, handleScoreSubmit, errors}) {
   const [grid, setGrid] = useState([]);
   const [gridRow, setGridRow] = useState(9);
   const [gridCol, setGridCol] = useState(9);
@@ -229,7 +229,6 @@ function PathfinderGame({ setPage, handleScoreSubmit }) {
 
   function handleScore() {
     handleScoreSubmit(userScore)
-    setPage('PathfinderScoreboard')
   }
 
   function handleNextLevel() {
@@ -295,6 +294,7 @@ function PathfinderGame({ setPage, handleScoreSubmit }) {
           <p>Score: {userScore}</p>
         </div>
         <div className='score'>
+          {errors.map(error => <p className='errors'>{error}</p>)}
           <p>Level {level}</p>
           <p>Shortest Path: {shortestPath.length}</p>
           <p>Your Path: {userPath.length}</p>
