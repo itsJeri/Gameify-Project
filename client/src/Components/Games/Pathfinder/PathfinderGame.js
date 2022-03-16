@@ -255,13 +255,13 @@ function PathfinderGame({ setPage, handleScoreSubmit, errors}) {
   }
 
   return (
-    <div className = 'd-grid gap-2'>
+    <div className='d-grid gap-2'>
       <button onClick={() => setPage('PathfinderSandbox')}>
         To Sandbox Mode
       </button>
-      <p style={{textAlign: 'center', marginTop: '3%', marginBottom: '-2%'}}>Click or drag the shortest path.</p>
-      <div className='main'>
-        <div className='grid'>
+      <p style={{textAlign: 'center', marginTop: '3%', marginBottom: '-2%'}}>Click or drag the shortest path from start <div className='text-start'></div> to finish <div className='text-finish'></div> .</p>
+      <div className='main' style={{marginLeft: '18%'}}>
+        <div className='grid' style={{marginRight: '10rem'}}>
           <div className='d-flex'>
             <Button disabled={submitted} style={{marginRight: '4%'}} onClick={clearUserPath}>Clear</Button>
             {renderResults ? renderGameResult() : null}
@@ -269,7 +269,7 @@ function PathfinderGame({ setPage, handleScoreSubmit, errors}) {
           {/* Iterate through every row's column and create a node */}
           {grid.map((row, rowId) => {
             return (
-              <div key={rowId}>
+              <div key={rowId} >
                 {row.map((node, nodeId) => {
                   const {row, col, isStart, isFinish, isWall, isUser} = node;
                   return (

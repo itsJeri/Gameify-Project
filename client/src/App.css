@@ -96,19 +96,6 @@ form {
 }
 
 /* MAIN PAGE */
-.home-leaderboard {
-  background-color: #1f2833;
-  text-align: center;
-  border-radius: 1rem;
-  height: 100%;
-  width: 50%;
-  max-width: 70rem;
-  margin: auto;
-  padding-top: 2em;
-  padding-bottom: 1em;
-  margin-top: 3em;
-}
-
 #game-cards-container {
   display: flex;
   flex-wrap: wrap;
@@ -173,6 +160,53 @@ form {
   padding-bottom: 5rem;
 }
 
+/* LEADERBOARDS */
+.home-leaderboard {
+  background-color: #1f2833;
+  text-align: center;
+  border-radius: 1rem;
+  height: 100%;
+  width: 50%;
+  max-width: 70rem;
+  margin: auto;
+  padding-top: 2em;
+  padding-bottom: 1em;
+  margin-top: 3em;
+}
+
+/* tab */
+.home-leaderboard .nav-link {
+  color: #84ceeb;
+}
+
+.home-leaderboard .nav-link:hover {
+  color: hsl(259, 100%, 74%);
+}
+
+/* active tab */
+.home-leaderboard .nav-link.active {
+  background-color: #4a02e7 !important;
+  color: white !important;
+}
+
+table {
+  background-color: #273241;
+  color: #c5c6c7 !important;
+}
+
+table tr:hover {
+  background-color: #3b495a;
+}
+
+table a {
+  color: #84ceeb;
+  text-decoration: none;
+}
+
+table a:hover {
+  color: hsl(259, 100%, 74%);
+}
+
 /* GAME PAGE */
 .leaderboard {
   background-color: #1f2833;
@@ -193,17 +227,36 @@ form {
 }
 
 #user-score {
-  background-color: #84ceeb !important;
-  color: black;
+  background-color: #35b2e4 !important;
+  border-color: #4a02e7;
+  border-width: 2px;
+  color: #4a02e7;
 }
 
-/* a.page-link {
-  background-color: rgb(54, 54, 54);
-} */
+#user-score:hover {
+  background-color: #79cdee !important;
+}
+
+#user-score a {
+  color: #4a02e7;
+}
 
 .paginate {
   border-radius: 3rem;
   margin: 0 auto;
+}
+
+/* pages */
+.paginate a.page-link {
+  background-color: #273241 !important;
+  border-color: #c5c6c7;
+  color: #c5c6c7 !important;
+}
+
+/* active page */
+.paginate span.page-link {
+  background-color: #4a02e7 !important;
+  border-color: #c5c6c7 !important;
 }
 
 .score {

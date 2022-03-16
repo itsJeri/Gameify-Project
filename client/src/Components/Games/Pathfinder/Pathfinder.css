@@ -29,3 +29,23 @@
   margin-top: 2rem;
   display: block;
 }
+
+.text-start {
+  width: 30px;
+  height: 30px;
+  outline: 1px solid #84ceeb;
+  display: inline-block;
+  margin-bottom: -7px;
+  text-align: center;
+  background-color: rgb(0, 130, 0);
+}
+
+.text-finish {
+  width: 30px;
+  height: 30px;
+  outline: 1px solid #84ceeb;
+  display: inline-block;
+  margin-bottom: -7px;
+  text-align: center;
+  background-color: rgb(130, 0, 0);
+}
