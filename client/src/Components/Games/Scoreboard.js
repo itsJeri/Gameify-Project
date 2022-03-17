@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Paginate from '../Paginate';
 import Td from '../Table/Td';
 
-import { Table, Button } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
 
 function PathfinderScoreboard({ game, userScore }) {
   const [isLoading, setIsLoading] = useState(true);

@@ -1,6 +1,5 @@
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { Context } from '../context/Context';
-import Leaderboards from './Leaderboards';
 import GameCard from './GameCard';
 
 import logo from '../assets/logo2.mp4'

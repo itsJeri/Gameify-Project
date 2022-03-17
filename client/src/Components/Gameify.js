@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from 'react';
 import { Context } from '../context/Context';
 import { Routes, Route } from 'react-router-dom';
 
-import LoginPage from './LoginPage';
 import LoginForm from './Login/LoginForm';
 import SignupForm from './Login/SignupForm';
 import MainPage from './MainPage';
@@ -86,7 +85,7 @@ function Gameify() {
         element={<SignupForm />}
       />
       <Route
-        path='/leaderboards'
+        path='/leaderboard'
         element={<LeaderboardsPage />}
       />
       {gameRoutes}
