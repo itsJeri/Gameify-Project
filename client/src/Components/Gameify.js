@@ -86,7 +86,7 @@ function Gameify() {
         element={<SignupForm />}
       />
       <Route
-        path='/leaderboard'
+        path='/leaderboards'
         element={<LeaderboardsPage />}
       />
       {gameRoutes}
