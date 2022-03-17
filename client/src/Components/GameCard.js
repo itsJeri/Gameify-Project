@@ -35,7 +35,7 @@ function GameCard({ game, urlName }) {
   }
 
   return (
-    <Card key={game.id} as={Link} to={`/games/${urlName}`} className='game-card' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
+    <Card key={game.id} as={Link} to={`/game/${urlName}`} className='game-card' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} >
     <Card.Img src={image} />
     <Card.Body>
       {/* {showText ?  */}

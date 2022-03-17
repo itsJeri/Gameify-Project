@@ -55,7 +55,7 @@ function Gameify() {
     return (
       <Route
         key={game.id}
-        path={`/games/${urlName}`}
+        path={`/game/${urlName}`}
         element={<GameComponent game={game} />}
       />
     )
@@ -86,7 +86,7 @@ function Gameify() {
         element={<SignupForm />}
       />
       <Route
-        path='/leaderboards'
+        path='/leaderboard'
         element={<LeaderboardsPage />}
       />
       {gameRoutes}
