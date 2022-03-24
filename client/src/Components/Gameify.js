@@ -8,6 +8,7 @@ import MainPage from './MainPage';
 import ProfilePage from './ProfilePage';
 import Pathfinder from './Games/Pathfinder/Pathfinder';
 import NumberMemory from './Games/NumberMemory/NumberMemory';
+import TypingTest from './Games/TypingTest/TypingTest';
 import LeaderboardsPage from './LeaderboardsPage';
 
 function Gameify() {
@@ -45,6 +46,7 @@ function Gameify() {
   const gameComponents = {
     1: Pathfinder,
     2: NumberMemory,
+    3: TypingTest
     // Add new game component names here
   }
 

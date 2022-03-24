@@ -22,6 +22,10 @@ function GameCard({ game, urlName }) {
       dark: numberMemoryDark,
       light: numberMemoryLight
     }
+    if (game.name === 'Typing Test') return {
+      dark: numberMemoryDark,
+      light: numberMemoryLight
+    }
   }
 
   function handleMouseEnter() {

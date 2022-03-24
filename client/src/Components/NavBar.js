@@ -31,7 +31,6 @@ function NavBar() {
             <Nav.Link as={Link} to={'/'}>Home</Nav.Link>
             <Nav.Link as={Link} to={'/leaderboard'}>Leaderboards</Nav.Link>
           </Nav>
-          </Navbar.Collapse>
           <Navbar.Text id="navbar-text">
             Hey there, stranger!
           </Navbar.Text>
@@ -43,6 +42,7 @@ function NavBar() {
               Sign in
             </Button>
           </OverlayTrigger>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
     </div>

@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { Context } from '../../../context/Context';
 
-import './NumberMemory.css'
+import './NumberMemory.css';
 import numberMemoryLight from '../../../assets/number_memory_light.png';
 import { Button } from 'react-bootstrap';
 

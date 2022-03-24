@@ -2,7 +2,7 @@ puts "Seeding Users...Apologies, this might take a while"
 
 u1 = User.create!(username: "Jeri", password: "abc123", password_confirmation: "abc123", email: "faker@gmail.com")
 u2 = User.create!(username: "Gerry", password: "abc123", password_confirmation: "abc123", email: "gerry@gmail.com")
-u3 = User.create!(username: "Hamster", password: "abc123", password_confirmation: "abc123", email: "hamster@yahoo.com")
+u3 = User.create!(username: "TheRealHamster", password: "abc123", password_confirmation: "abc123", email: "hamster@yahoo.com")
 u4 = User.create!(username: "SquirrelBrain", password: "abc123", password_confirmation: "abc123", email: "squirrel@yahoo.com")
 u5 = User.create!(username: "DolphinLover", password: "abc123", password_confirmation: "abc123", email: "DolphinsAreAwesome@yahoo.com")
 
@@ -13,6 +13,7 @@ end
 puts "Seeding Games..."
 g1 = Game.create(name: "Pathfinder", description: "Best the AI in finding the shortest path possible")
 g2 = Game.create(name: "Number Memory", description: "How many digits can you memorize?")
+g3 = Game.create(name: "Typing Test", description: "Test your typing speed")
 
 
 puts "Seeding Scores..."
@@ -72,5 +73,29 @@ end
 
 Score.create(score: 24, user: u5, game: g2)
 
+# Typing Test scores
+30.times do |i|
+  Score.create(score: rand(25...60), user_id: i, game: g3)
+end
+
+30.times do |i|
+  Score.create(score: rand(45...100), user_id: i, game: g3)
+end
+
+30.times do |i|
+  Score.create(score: rand(75...110), user_id: i, game: g3)
+end
+
+20.times do |i|
+  Score.create(score: rand(70...125), user_id: i, game: g3)
+end
+
+15.times do |i|
+  Score.create(score: rand(90...130), user_id: i, game: g3)
+end
+
+5.times do |i|
+  Score.create(score: rand(130...170), user_id: i, game: g3)
+end
 
 puts "Done!"

@@ -3,7 +3,7 @@ import Scoreboard from '../Scoreboard';
 
 import { Button } from 'react-bootstrap';
 
-function NumberMemoryScoreboard({ setPage, game, userScore, isSubmitting }) {
+function TypingTestScoreboard({ setPage, game, userScore, isSubmitting }) {
 
   if (isSubmitting) return null;
 
@@ -16,4 +16,4 @@ function NumberMemoryScoreboard({ setPage, game, userScore, isSubmitting }) {
   )
 }
 
-export default NumberMemoryScoreboard;
+export default TypingTestScoreboard;
