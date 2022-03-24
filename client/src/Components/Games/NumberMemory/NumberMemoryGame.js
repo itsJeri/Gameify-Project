@@ -9,13 +9,13 @@ function NumberMemoryGame({ handleScoreSubmit, errors }) {
   const [correctNum, setCorrectNum] = useState(null);
   const [answer, setAnswer] = useState('');
   const [score, setScore] = useState(0);
-  const [multiplier, setMultiplier] = useState(10);
+  const [multiplier, setMultiplier] = useState(1);
 
-  // Random Number place value increases per round
-  const randNum = parseInt((Math.random() * (1 - 0.1) + 0.1) * multiplier)
+  // Random decimal between 1 and 9
+  const randNum = (Math.random() * (9 - 1) + 1)
 
   useEffect(() => {
-    setCorrectNum(randNum);
+    setCorrectNum(parseInt(randNum * multiplier));
     setScore(0);
   }, [])
 
@@ -58,7 +58,8 @@ function NumberMemoryGame({ handleScoreSubmit, errors }) {
       setScore(score + 1);
       setAnswerPage(false);
       setMultiplier(multiplier * 10);
-      setCorrectNum(randNum * 10);
+      // multiplier * 10 to handle lifecycle async
+      setCorrectNum(parseInt(randNum * (multiplier * 10)));
       setAnswer('');
     } else {
       setGameOver(true);

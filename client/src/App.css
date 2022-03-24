@@ -30,7 +30,7 @@ video {
   min-height: 100vh;
   display: block;
   overflow: hidden;
-  padding-bottom: 15rem;
+  padding-bottom: 20rem;
 }
 
 /* NAVBAR */
@@ -167,6 +167,7 @@ form {
   border-radius: 1rem;
   height: 100%;
   width: 50%;
+  min-width: 25rem;
   max-width: 70rem;
   margin: auto;
   padding-top: 2em;
@@ -214,6 +215,7 @@ table a:hover {
   border-radius: 3rem;
   height: 100%;
   width: 50%;
+  min-width: 25rem;
   max-width: 70rem;
   margin: auto;
   padding-top: 2em;
