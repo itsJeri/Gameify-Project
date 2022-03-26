@@ -86,11 +86,12 @@ form {
   color: #c5c6c7;
   background-color: #1f2833;
   width: 35%;
+  min-width: 25rem;
   margin: 2rem;
 }
 
 #login-form img {
-  width: 50%;
+  width: 60%;
   margin: 1rem;
 }
 
