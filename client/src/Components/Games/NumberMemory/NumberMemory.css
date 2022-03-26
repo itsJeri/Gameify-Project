@@ -1,10 +1,12 @@
 .number-memory-main {
   text-align: center;
-  /* margin-top: 5rem; */
+  margin-top: 2rem;
+  height: 20rem;
 }
 
 .number-memory-main img {
   width: 15rem;
+  margin-top: -2rem;
 }
 
 .number-memory-main form {
@@ -15,6 +17,18 @@
 .number-memory-main input {
   height: 2.3rem;
   margin-top: 1rem;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 .number-memory-main button {

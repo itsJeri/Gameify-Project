@@ -17,7 +17,7 @@ function PathfinderGame({ setPage, handleScoreSubmit, errors}) {
   const [submitted, setSubmitted] = useState(false);
   const [renderResults, setRenderResults] = useState(false);
   const [level, setLevel] = useState(1);
-  const [wallChance, setWallChance] = useState(0.2);
+  const [wallChance] = useState(0.2);
 
   // Start and Finish nodes placed in relation to grid size
   const START_NODE_ROW = Math.floor(gridRow * .25);
@@ -259,7 +259,7 @@ function PathfinderGame({ setPage, handleScoreSubmit, errors}) {
       <button onClick={() => setPage('PathfinderSandbox')}>
         To Sandbox Mode
       </button>
-      <p style={{textAlign: 'center', marginTop: '3%', marginBottom: '-2%'}}>Click or drag the shortest path from start <div className='text-start'></div> to finish <div className='text-finish'></div> .</p>
+      <p style={{textAlign: 'center', marginTop: '3%', marginBottom: '-2%'}}>Click or drag the shortest path from start <span className='text-start'></span> to finish <span className='text-finish'></span> .</p>
       <div className='main' style={{marginLeft: '18%'}}>
         <div className='grid' style={{marginRight: '10rem'}}>
           <div className='d-flex'>

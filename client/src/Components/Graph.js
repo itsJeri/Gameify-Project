@@ -1,6 +1,5 @@
-import { Chart } from 'chart.js';
 import React from 'react';
-import { Line, defaults } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 
 // defaults.global.legend.position = 'top'
 // defaults.global.defaultFontColor = '#c5c6c7'

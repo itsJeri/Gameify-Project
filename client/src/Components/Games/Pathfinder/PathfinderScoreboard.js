@@ -12,7 +12,7 @@ function PathfinderScoreboard({ setPage, game, userScore, isSubmitting }) {
       <h3>{game.name} Leaderboard</h3>
       <Scoreboard game={game} userScore={userScore}/>
       <Button style={{marginTop: '1rem'}} onClick={() => setPage('PathfinderGame')}>Play again</Button>
-      <Button style={{marginTop: '1rem', marginLeft: '.5%'}} onClick={() => setPage('Pathfinder')} >Return to Menu</Button>
+      {/* <Button style={{marginTop: '1rem', marginLeft: '.5%'}} onClick={() => setPage('Pathfinder')} >Return to Menu</Button> */}
     </div>
   )
 }

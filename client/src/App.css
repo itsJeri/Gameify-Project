@@ -23,6 +23,7 @@ video {
   margin: 0 auto;
   margin-top: 2rem;
   width: 30rem;
+  max-width: 97%;
 }
 
 #page-container {
@@ -32,6 +33,16 @@ video {
   overflow: hidden;
   padding-bottom: 20rem;
 }
+
+/* BOOTSTRAP BUTTONS */
+/* .btn-primary {
+  background-color: #4a02e7 !important;
+  border-color: #4a02e7 !important;
+}
+
+.btn-primary:hover {
+  background-color: #3a00b8 !important;
+} */
 
 /* NAVBAR */
 #logo {
@@ -67,7 +78,6 @@ form {
 
 #form-container {
   place-items: center;
-  /* margin-top: 160px; */
   margin: 5rem;
   background-color: #121319;
 }
@@ -109,7 +119,6 @@ form {
   text-align: center;
   padding: -2.5rem;
   width: 38rem;
-  /* height: 150px; */
   border-radius: 10rem !important;
   margin: auto;
   text-decoration: none;
@@ -118,22 +127,11 @@ form {
 
 .game-card:hover {
   background-color: #0a0b0f !important;
-  /* border-radius: 10rem !important; */
-  /* filter: blur(5px); */
-  /* width: 42rem; */
 }
 
 .game-card img {
   border-radius: 10rem;
 }
-
-/* .game-card-name {
-  position: absolute;
-  top: 40%;
-  bottom: 25%;
-  left: 25%;
-  right: 25%;
-} */
 
 /* PROFILE PAGE */
 .profile-page {
@@ -354,21 +352,7 @@ table a:hover {
   color: white;
   display: inline-block;
   background-size: 120% 100%;
-  /* -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-background-clip: text;
-  -moz-text-fill-color: transparent;
-  -ms-background-clip: text;
-  -ms-text-fill-color: transparent; */
   background-clip: text;
-  /* text-fill-color: transparent; */
-
-  /* background-image: linear-gradient(45deg, 
-                    #7794ff, 
-                    #44107A,
-                    #FF1361,
-                    #FFF800); */
-  /* animation: .8s shake infinite alternate; */
   background: linear-gradient(
     120deg,
     hsl(188, 100%, 50%) 10%,

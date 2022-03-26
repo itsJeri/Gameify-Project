@@ -11,7 +11,7 @@ function MainPage() {
     const urlName = regex(game.name);
 
     return (
-      <GameCard game={game} urlName={urlName} />
+      <GameCard key={game.id} game={game} urlName={urlName} />
     )
   })
 
