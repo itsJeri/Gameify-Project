@@ -42,7 +42,18 @@ video {
 
 .btn-primary:hover {
   background-color: #3a00b8 !important;
+  border-color: #3a00b8 !important;
 } */
+
+#submit-button {
+  background-color: #4a02e7!important;
+  border-color: #4a02e7 !important;
+}
+
+#submit-button:hover {
+  background-color: #3d00c2 !important;
+  border-color: #3d00c2 !important;
+}
 
 /* NAVBAR */
 #logo {
@@ -119,7 +130,7 @@ form {
   background-color: #121319 !important;
   text-align: center;
   padding: -2.5rem;
-  width: 38rem;
+  width: 36rem;
   border-radius: 10rem !important;
   margin: auto;
   text-decoration: none;
@@ -380,7 +391,7 @@ table a:hover {
 }
 
 .shake {
-  animation: 0.8s Shake infinite alternate;
+  animation: 1s Shake infinite alternate;
 }
 
 @keyframes Shake {

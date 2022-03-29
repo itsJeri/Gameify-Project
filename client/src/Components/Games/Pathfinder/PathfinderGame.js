@@ -248,7 +248,7 @@ function PathfinderGame({ setPage, handleScoreSubmit, errors}) {
       return (
         <>
         <h3 style={{margin: 'auto'}}>GAME OVER</h3>
-        <Button onClick={() => handleScore()}>Submit Score</Button>
+        <Button id='submit-button' onClick={() => handleScore()}>Submit Score</Button>
         </>
       )
     }
@@ -259,7 +259,11 @@ function PathfinderGame({ setPage, handleScoreSubmit, errors}) {
       <button onClick={() => setPage('PathfinderSandbox')}>
         To Sandbox Mode
       </button>
-      <p style={{textAlign: 'center', marginTop: '3%', marginBottom: '-2%'}}>Click or drag the shortest path from start <span className='text-start'></span> to finish <span className='text-finish'></span> .</p>
+      <div id='description'>
+        <p>Click or drag the shortest path from start <span className='text-start'></span> to finish <span className='text-finish'></span> .</p>
+        <p>Walls <span className='text-wall'></span> are impassable.</p>
+        <p>If your path is the same length as the shortest path, you win!</p>
+      </div>
       <div className='main' style={{marginLeft: '18%'}}>
         <div className='grid' style={{marginRight: '10rem'}}>
           <div className='d-flex'>
@@ -291,7 +295,7 @@ function PathfinderGame({ setPage, handleScoreSubmit, errors}) {
               </div>
             )
           })}
-          <p>Score: {userScore}</p>
+          {/* <p>Score: {userScore}</p> */}
         </div>
         <div className='score'>
           {errors.map(error => <p className='errors'>{error}</p>)}

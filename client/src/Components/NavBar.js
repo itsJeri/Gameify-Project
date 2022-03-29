@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { Context } from '../context/Context';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Button, Tooltip, OverlayTrigger } from 'react-bootstrap';
@@ -7,6 +7,14 @@ import logo from '../assets/logo.png'
 
 function NavBar() {
   const {user, setUser, navigate} = useContext(Context);
+  const [showTooltip, setShowTooltip] = useState(true);
+
+  useEffect(() => {
+    // Remove login tooltip after 5 seconds on page load
+    setTimeout(() => {
+      setShowTooltip(false);
+    }, 4000)
+  }, [])
 
   function handleLogout() {
     fetch('/logout', { method: 'DELETE' })
@@ -49,6 +57,10 @@ function NavBar() {
                Hey there, stranger!
               </Navbar.Text>
               <OverlayTrigger
+                defaultShow={true}
+                onToggle={() => setShowTooltip(!showTooltip)}
+                show={showTooltip}
+                delay={100}
                 placement='bottom'
                 overlay={<Tooltip id='sign-in-tooltip'>Sign in to submit and track your scores</Tooltip>}
               >

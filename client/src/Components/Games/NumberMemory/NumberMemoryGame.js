@@ -23,10 +23,16 @@ function NumberMemoryGame({ handleScoreSubmit, errors }) {
     if (gameOver) {
       return (
         <>
-          <h1>GAME OVER</h1>
-          <h3>Score: {score}</h3>
+          <h1 className='shake'>GAME OVER</h1>
+          <h3>Number: <span id='correct'>{correctNum}</span></h3>
+          <h3>Your Answer: <span id='incorrect'>{answer}</span></h3>
+          <br></br>
+          <h3>Digits Memorized: {score}</h3>
           {errors.map(error => <p className='errors'>{error}</p>)}
-          <Button onClick={() => handleScoreboard()}>Submit Score</Button>
+          <div id='game-over-buttons'>
+            <Button style={{margin: 'auto'}} id='submit-button' onClick={() => handleScoreboard()}>Submit Score</Button>
+            <Button style={{margin: 'auto'}} onClick={() => resetGame()} >Try Again</Button>
+          </div>
         </>
       )
     } else if (answerPage) {
@@ -68,6 +74,15 @@ function NumberMemoryGame({ handleScoreSubmit, errors }) {
 
   function handleScoreboard() {
     handleScoreSubmit(score);
+  }
+
+  function resetGame() {
+    setGameOver(false);
+    setCorrectNum(parseInt(randNum));
+    setScore(0);
+    setMultiplier(1);
+    setAnswerPage(false);
+    setAnswer('');
   }
 
   return (

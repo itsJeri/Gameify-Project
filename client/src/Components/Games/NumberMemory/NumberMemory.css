@@ -36,3 +36,19 @@ input[type="number"] {
   display: block;
   margin-top: 1rem;
 }
+
+#game-over-buttons {
+  display: flex;
+  width: 13rem;
+  margin: 0 auto;
+}
+
+#correct {
+  color: rgba(0, 255, 0);
+  font-size: 27px;
+}
+
+#incorrect {
+  color: rgba(255, 0, 255);
+  font-size: 27px;
+}

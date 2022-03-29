@@ -8,7 +8,7 @@ import { Button } from 'react-bootstrap';
 function PathfinderSandbox({ setPage }) {
   const [grid, setGrid] = useState([]);
   const [gridSize, setGridSize] = useState({
-    row: 20,
+    row: 19,
     col: 30
   });
   const [mousePressed, setMousePressed] = useState(false);
@@ -198,13 +198,15 @@ function PathfinderSandbox({ setPage }) {
       <button onClick={() => setPage('PathfinderGame')}>
         Return to Game
       </button>
-      <p style={{textAlign: 'center', marginTop: '3%', marginBottom: '-2%'}}>Click or drag around the grid to create your own walls!</p>
+      <div id='description'>
+        <p>Click or drag around the grid to create your own walls <span className='text-wall'></span> .</p>
+      </div>
       <div className='main'>
         <div className='grid'>
           <div className='d-flex'>
           <Button disabled={isVisualizing} onClick={resetGrid}>Reset Walls</Button>
           <Button style={{marginLeft: '.5%', marginRight: '-5%'}} onClick={() => setShowDistance(!showDistance)}>Toggle Distance</Button>
-          <h3 style={{margin: 'auto'}}>Shortest Path: {shortestPath.length}</h3>
+          <h3 style={{margin: 'auto'}}>Shortest Distance: {shortestPath.length > 0 ? shortestPath.length - 1 : 0}</h3>
           <Button disabled={isVisualizing} style={{marginLeft: '.5%'}} onClick={runVisualization}>
             Run Dijkstra's Algorithm
           </Button>
