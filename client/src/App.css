@@ -205,7 +205,7 @@ table {
   color: #c5c6c7 !important;
 }
 
-table tr:hover {
+.table-data:hover {
   background-color: #3b495a;
 }
 
@@ -263,6 +263,10 @@ table a:hover {
   background-color: #273241 !important;
   border-color: #c5c6c7;
   color: #c5c6c7 !important;
+}
+
+.paginate a.page-link:hover {
+  background-color: #3b495a !important;
 }
 
 /* active page */

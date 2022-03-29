@@ -42,7 +42,7 @@ function Leaderboards() {
               const ranking = ((currentPage - 1) * scoresPerPage) + i + 1
               const user = score.user
               return (
-                <tr key={score.id}>
+                <tr key={score.id} className='table-data'>
                   <td>{ranking}</td>
                   <Td to={`/${user.username}`}>{user.username}</Td>
                   <td>{score.score}</td>

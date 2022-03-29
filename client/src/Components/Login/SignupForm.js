@@ -61,6 +61,7 @@ function SignupForm() {
             id='username'
             placeholder='Enter Username'
             autoComplete='off'
+            autofocus='true'
             value={signupForm.username}
             onChange={e => handleOnChange(e)}
           />

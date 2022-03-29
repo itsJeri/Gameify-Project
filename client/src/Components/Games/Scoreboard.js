@@ -55,7 +55,7 @@ function PathfinderScoreboard({ game, userScore }) {
           const user = score.user
           const isUserScore = score.id === userScore.id ? 'user-score' : ''
             return (
-              <tr key={score.id} id={isUserScore}>
+              <tr key={score.id} id={isUserScore} className='table-data'>
                 <td>{ranking}</td>
                 <Td to={`/${user.username}`}>{user.username}</Td>
                 <td>{score.score}</td>

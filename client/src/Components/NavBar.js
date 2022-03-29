@@ -7,13 +7,17 @@ import logo from '../assets/logo.png'
 
 function NavBar() {
   const {user, setUser, navigate} = useContext(Context);
-  const [showTooltip, setShowTooltip] = useState(true);
+  const [showTooltip, setShowTooltip] = useState(false);
 
   useEffect(() => {
-    // Remove login tooltip after 5 seconds on page load
+    // Show login tooltip
+    setTimeout(() => {
+      setShowTooltip(true);
+    }, 2000)
+    // Hide login tooltip
     setTimeout(() => {
       setShowTooltip(false);
-    }, 4000)
+    }, 7000)
   }, [])
 
   function handleLogout() {
@@ -58,7 +62,7 @@ function NavBar() {
               </Navbar.Text>
               <OverlayTrigger
                 defaultShow={true}
-                onToggle={() => setShowTooltip(!showTooltip)}
+                // onToggle={() => setShowTooltip(!showTooltip)}
                 show={showTooltip}
                 delay={100}
                 placement='bottom'

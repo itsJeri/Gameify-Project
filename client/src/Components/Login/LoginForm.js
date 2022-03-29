@@ -58,6 +58,7 @@ function LoginForm() {
             id='username'
             placeholder='Enter Username'
             autoComplete='off'
+            autofocus='true'
             value={loginForm.username}
             onChange={(e) => handleOnChange(e)}
           />
