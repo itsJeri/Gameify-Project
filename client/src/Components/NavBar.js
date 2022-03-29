@@ -13,11 +13,11 @@ function NavBar() {
     // Show login tooltip
     setTimeout(() => {
       setShowTooltip(true);
-    }, 2000)
+    }, 4000)
     // Hide login tooltip
     setTimeout(() => {
       setShowTooltip(false);
-    }, 7000)
+    }, 9000)
   }, [])
 
   function handleLogout() {
