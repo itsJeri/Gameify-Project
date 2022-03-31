@@ -49,7 +49,7 @@ function NumberMemoryGame({ handleScoreSubmit, errors }) {
       return (
         <>
           <h2>Memorize:</h2>
-          <h1>{correctNum}</h1>
+          <h1 className='unselectable'>{correctNum}</h1>
           <br></br>
           <Countdown setAnswerPage={setAnswerPage}/>
         </>
