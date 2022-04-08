@@ -15,6 +15,7 @@ function PathfinderGame({ setPage, handleScoreSubmit, errors}) {
   const [userPath, setUserPath] = useState([]);
   const [atFinish, setAtFinish] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [allowNextPage, setAllowNextPage] = useState(false);
   const [renderResults, setRenderResults] = useState(false);
   const [level, setLevel] = useState(1);
   const [wallChance] = useState(0.2);
@@ -156,6 +157,9 @@ function PathfinderGame({ setPage, handleScoreSubmit, errors}) {
         const node = nodesInShortestPathOrder[i];
         document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-shortest-path';
       }, 50 * i);
+      setTimeout(() => {
+        setAllowNextPage(true);
+      }, 50 * nodesInShortestPathOrder.length)
     }
     handleLevelResults();
   }
@@ -234,6 +238,7 @@ function PathfinderGame({ setPage, handleScoreSubmit, errors}) {
   function handleNextLevel() {
     resetGrid();
     setLevel(level + 1);
+    setAllowNextPage(false);
   }
 
   function renderGameResult() {
@@ -241,14 +246,14 @@ function PathfinderGame({ setPage, handleScoreSubmit, errors}) {
       return (
         <>
         <h3 style={{margin: 'auto'}}>WIN</h3> 
-        <Button  onClick={() => handleNextLevel()}>Next Level</Button>
+        <Button disabled={!allowNextPage} onClick={() => handleNextLevel()}>Next Level</Button>
         </>
       )
     } else {
       return (
         <>
         <h3 style={{margin: 'auto'}}>GAME OVER</h3>
-        <Button id='submit-button' onClick={() => handleScore()}>Submit Score</Button>
+        <Button id='submit-button' disabled={!allowNextPage} onClick={() => handleScore()}>Submit Score</Button>
         </>
       )
     }
