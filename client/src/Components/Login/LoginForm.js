@@ -6,6 +6,11 @@ import { Form, Button } from 'react-bootstrap';
 import logo from '../../assets/logo.png'
 
 function LoginForm() {
+  const demoLogin = {
+    username: 'Demo',
+    password: 'abc123'
+  }
+
   const [loginForm, setLoginForm] = useState({
     username: '',
     password: ''
@@ -22,7 +27,7 @@ function LoginForm() {
     })
   }
 
-  function handleSubmit(e) {
+  function handleSubmit(e, loginInfo) {
     e.preventDefault();
     setIsLoading(true);
     fetch('/login', {
@@ -30,7 +35,7 @@ function LoginForm() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(loginForm),
+      body: JSON.stringify(loginInfo),
     })
       .then(r => {
         setIsLoading(false);
@@ -49,7 +54,7 @@ function LoginForm() {
 
   return (
     <div className='d-flex justify-content-center' id='form-container'>
-      <Form className='text-center rounded p-4 p-sm-3' onSubmit={e => handleSubmit(e)} id='login-form'>
+      <Form className='text-center rounded p-4 p-sm-3' onSubmit={e => handleSubmit(e, loginForm)} id='login-form'>
       <img id='logo' src={logo} alt='logo'/>
         <Form.Group className='mb-3'>
           <Form.Label htmlFor='username'>Username</Form.Label>
@@ -80,13 +85,16 @@ function LoginForm() {
           }) :
           null
         }
-        <Button color='black' variant='primary' type='submit' style={{marginTop: '10px', marginBottom: '2rem'}}>
-            {isLoading ? 'Loading...' : 'Login'}
+        <Button color='black' variant='primary' type='submit' style={{marginTop: '10px', marginBottom: '1rem'}}>
+          {isLoading ? 'Loading...' : 'Login'}
         </Button>
-            <p>Don't have an account?</p>
+          <p>Don't have an account?</p>
         <Button variant='primary' as={Link} to={'/signup'}>
-            Sign Up
+          Sign Up
         </Button>
+        <p id='demo-login' className='shake' onClick={(e) => handleSubmit(e, demoLogin)} >
+          Demo Login
+        </p>
       </Form>
     </div>
   )
