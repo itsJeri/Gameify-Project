@@ -110,6 +110,11 @@ form {
   margin: 2rem;
 }
 
+#login-form input {
+  margin: auto;
+  width: 90%;
+}
+
 #login-form img {
   width: 60%;
   margin: 1rem;
@@ -125,7 +130,7 @@ form {
   width: 70%;
   margin: auto;
   margin-top: 1.5rem;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
   text-decoration: none;
   font-weight: bold;
   color: #84ceeb;

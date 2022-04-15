@@ -109,7 +109,7 @@ function SignupForm() {
         }
         <Button type='submit' style={{marginTop: '10px', marginBottom: '2rem'}}>{isLoading ? 'Loading...' : 'Sign Up'}</Button>
             <p>Already have an account? </p>
-        <Button as={Link} to='/login'>
+        <Button as={Link} to='/login' style={{ marginBottom: '1rem' }} >
             Log In
         </Button>
       </Form>
