@@ -55,7 +55,7 @@ video {
 } */
 
 #submit-button {
-  background-color: #4a02e7!important;
+  background-color: #4a02e7 !important;
   border-color: #4a02e7 !important;
 }
 
@@ -382,9 +382,21 @@ table a:hover {
   line-height: 2;
 }
 
-.footer .copyright {
+.footer #copyright {
   font-weight: normal;
   font-size: 17px;
+}
+
+.footer #copyright:hover {
+  color: hsl(259, 100%, 74%);
+}
+
+.footer #linkedin:hover .social-links {
+  color: hsl(259, 100%, 74%);
+}
+
+.footer #linkedin:hover .social-icons {
+  background-color: hsl(259, 100%, 74%);
 }
 
 .game-card-name {

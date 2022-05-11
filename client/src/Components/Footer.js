@@ -10,10 +10,16 @@ function Footer() {
       </p>
     </div>
     <div className='footer-right '>
-      <p>Follow me</p>
-      <a href='https://www.linkedin.com/in/jerry-tong-87a99b221/' target='_blank' rel='noopener noreferrer'><i className='fa fa-linkedin'></i></a>
+      <div id='linkedin'>
+        <a href='https://www.linkedin.com/in/jerry-tong/' target='_blank' rel='noopener noreferrer'>
+          <p className='social-links'>Follow me</p>
+          <i className='fa fa-linkedin social-icons'></i>
+        </a>
+      </div>
       <div>
-        <p className='copyright'> Gameify &copy; {new Date().getFullYear()}</p>
+        <a href='https://github.com/itsJeri/Gameify-Project' target='_blank' rel='noopener noreferrer'>
+          <p id='copyright'> Gameify &copy; {new Date().getFullYear()}</p>
+        </a>
       </div>
     </div>
   </footer>
