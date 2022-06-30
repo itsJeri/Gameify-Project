@@ -11,10 +11,8 @@ import NumberMemory from './Games/NumberMemory/NumberMemory';
 import LeaderboardsPage from './LeaderboardsPage';
 
 function Gameify() {
-  const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  const {games, setGames} = useContext(Context);
+  const {games, setGames, users, setUsers} = useContext(Context);
 
   useEffect(() => {
     fetch('/users')

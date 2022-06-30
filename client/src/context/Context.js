@@ -5,6 +5,7 @@ export const Context = createContext()
 
 function ContextProvider(props) {
   const [user, setUser] = useState(null);
+  const [users, setUsers] = useState([]);
   const [games, setGames] = useState([]);
 
   const navigate = useNavigate();
@@ -21,6 +22,8 @@ function ContextProvider(props) {
   const store = {
     user,
     setUser,
+    users,
+    setUsers,
     games,
     setGames,
     navigate,

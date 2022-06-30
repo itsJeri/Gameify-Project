@@ -15,7 +15,7 @@ function SignupForm() {
   const [errors, setErrors] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const {setUser, navigate} = useContext(Context);
+  const {setUser, users, setUsers, navigate} = useContext(Context);
 
   function handleOnChange(e) {
     setSignupForm({
@@ -41,6 +41,7 @@ function SignupForm() {
           r.json()
           .then(user => {
             setUser(user);
+            setUsers([...users, user]);
             navigate('/');
           });
         } else {
