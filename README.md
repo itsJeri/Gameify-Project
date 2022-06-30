@@ -7,9 +7,60 @@ This project is deployed on Heroku. [Check it out!](https://jerry-gameify.heroku
 https://jerry-gameify.herokuapp.com/
 
 ## Installation
-Execute:
+
+Requirements:
+- Ruby 2.7.4
+- NodeJS (v16) and npm
+- PostgreSQL
+
+#### Install latest versions of `bundler` and `rails`.
+
+```
+$ gem install bundler
+$ gem install rails
+```
+
+#### If your Node is not updated
+
+```
+$ npm i -g npm
+```
+
+#### PostgreSQL installation for WSL
+
+```
+$ sudo apt update
+$ sudo apt install postgresql postgresql-contrib libpq-dev
+```
+
+Confirm Postgres was installed successfully:
+```
+$ psql --version
+```
+
+Run this command to start Postgres service:
+```
+$ sudo service postgresql start
+```
+
+If you ever get stuck: https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database#install-postgresql
+
+#### PostgreSQL installation for OSX
+
+Use Homebrew:
+```
+$ brew install postgresql
+```
+
+Run this command to start Postgres service:
+```
+$ brew services start postgresql
+```
+
+#### Execute:
 ```
 $ bundle i
+$ rails db:create
 $ rails db:migrate db:seed
 $ npm i --prefix client
 ```
@@ -22,14 +73,17 @@ Run in a separate terminal in the main directory to initialize client: `$ npm st
 Go to `http://localhost:4000/` in your web browser to view the application.
 
 ## Usage
-If you are a new user, create an account to be granted access to additional features like submitting and tracking your scores and performance. If you don't want to be bothered creating one, worry not. You can still view leaderboards along with other user profiles and have fun messing around with the games!
-
+If you are a new user, create an account to be granted access to additional features like submitting and tracking your scores and performance. If you don't want to be bothered creating one, there's a demo login button at the bottom of the login form. Otherwise, you can still view leaderboards along with other user profiles and have fun messing around with the games!
 
 ## Features and Implementations
 ### Backend API:
-The API was built using Ruby, Ruby on Rails, Active Record, and PostGreSQL. I utilized the BCrypt password hashing algorithm to securely store encrypted passwords, and saved usernames as a citext data type to ensure case-insensitive uniqueness of usernames.
+The API was built using Ruby, Ruby on Rails, Active Record, and PostgreSQL. I utilized the BCrypt password hashing algorithm to securely store encrypted passwords, and saved usernames as a citext data type to ensure case-insensitive uniqueness of usernames.
 
 As for the relational database, I designed a standard many-to-many relation between `Users` and `Games`, with `Scores` as the join table. Validations are applied to `Users` and `Scores` to ensure the uniqueness and presence of select data and to handle error messages sent through the controllers to the client. Custom serializers, such as `/app/serializers/leaderboards_serializer.rb`, are used to carry specifically organized data to lessen workload/calculations on the client side.
+
+Each controller holds a private method to permit specified parameters for CRUD actions. The controllers all inherit from the ApplicationController, allowing all subclasses performing CRUD that raises an exception to be rescued with HTTP response 422. The error messages are then rendered in an array as JSON and can be utilized in the frontend.
+
+Routes are specified to promote a safer API and limit CRUD actions to only the ones necessary. There is also a fallback setup to render `public/index.html` (through FallbackController) to differentiate non-API requests through React Router.
 
 The seed data was implemented by creating fake `Users` with randomly generated usernames and emails using the Ruby Faker gem. The `Games` are created with a name and description whenever I make a new game. The `Scores` are created between each `User` and `Game` multiple times to generate enough data for the leaderboards, and they're created with percentiles of the average user score in mind.
 
