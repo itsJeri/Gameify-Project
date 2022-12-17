@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
   database: gameify_production
   username: gameify
   password: <%= ENV["GAMEIFY_DATABASE_PASSWORD"] %>
