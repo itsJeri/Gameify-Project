@@ -9,25 +9,37 @@ import ProfilePage from './ProfilePage';
 import Pathfinder from './Games/Pathfinder/Pathfinder';
 import NumberMemory from './Games/NumberMemory/NumberMemory';
 import LeaderboardsPage from './LeaderboardsPage';
+import Spinner from 'react-bootstrap/Spinner';
 
 function Gameify() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isTimedOut, setIsTimedOut] = useState(false);
   const {games, setGames, users, setUsers} = useContext(Context);
 
   useEffect(() => {
     fetch('/users')
-      .then(r => r.json())
-      .then(users => setUsers(users))
+      .then(r => {
+        if (r.ok) {
+          r.json()
+          .then(users => setUsers(users))
+        } else {
+          setIsTimedOut(true);
+        }
+      })
       
     fetch('/games')
-      .then(r => r.json())
-      .then(games => {
-        setGames(games)
-        setIsLoading(false);
+      .then(r => {
+        if (r.ok) {
+          r.json()
+          .then(games => {
+            setGames(games)
+            setIsLoading(false);
+          })
+        } else {
+          setIsTimedOut(true);
+        }
       })
   }, []);
-
-  if (isLoading) return null;
 
   // GAME ROUTE HANDLERS
 
@@ -67,6 +79,30 @@ function Gameify() {
       />
     )
   })
+
+  if (isLoading) {
+    return (
+    <div className='text-center' style={{ marginTop: '2rem' }}>
+      {
+        isTimedOut 
+        ? <div>
+            <p>It appears the server might be having some issues.</p>
+            <p>Please try refreshing the page.</p>
+          </div>
+        : <div>
+            <Spinner animation="border" />
+            <p>Initializing Heroku Postgres...</p>
+          </div>
+      }
+      <div style={{ marginTop: '2rem' }}>
+        {isTimedOut ? null : <p>Running into issues?</p>}
+        <a href='https://www.linkedin.com/in/jerry-tong/' target='_blank' rel='noopener noreferrer'>
+          Contact me
+        </a>
+      </div>
+    </div>
+  )
+}
 
   return (
     <Routes>
