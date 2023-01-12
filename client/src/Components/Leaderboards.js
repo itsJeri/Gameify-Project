@@ -44,7 +44,7 @@ function Leaderboards() {
               return (
                 <tr key={score.id} className='table-data'>
                   <td>{ranking}</td>
-                  <Td to={`/${user.username}`}>{user.username}</Td>
+                  <Td to={`/profile/${user.username}`}>{user.username}</Td>
                   <td>{score.score}</td>
                   <td>{new Date(score.created_at).toLocaleDateString('en-GB')}</td>
                 </tr>

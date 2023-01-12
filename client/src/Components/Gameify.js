@@ -74,7 +74,7 @@ function Gameify() {
     return (
       <Route
         key={user.id}
-        path={`/${user.username}`}
+        path={`/profile/${user.username}`}
         element={<ProfilePage userId={user.id} />}
       />
     )
@@ -119,19 +119,11 @@ function Gameify() {
         element={<SignupForm />}
       />
       <Route
-        path='/leaderboard'
+        path='/leaderboards'
         element={<LeaderboardsPage />}
       />
       {gameRoutes}
       {userProfileRoutes}
-      {/* <Route
-        path={'/games/pathfinder'}
-        element={<Pathfinder />}
-      />
-      <Route 
-        path={'/games/number-memory'}
-        element={<NumberMemory />}
-      /> */}
     </Routes>
   )
 }

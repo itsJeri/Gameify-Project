@@ -42,9 +42,9 @@ function NavBar() {
           <Nav className="me-auto">
             <Nav.Link as={Link} to={'/'}>Home</Nav.Link>
             
-            {user ? <Nav.Link as={Link} to={`/${user.username}`}>My Profile</Nav.Link> : null}
+            {user ? <Nav.Link as={Link} to={`/profile/${user.username}`}>My Profile</Nav.Link> : null}
 
-            <Nav.Link as={Link} to={'/leaderboard'}>Leaderboards</Nav.Link>
+            <Nav.Link as={Link} to={'/leaderboards'}>Leaderboards</Nav.Link>
           </Nav>
 
           { user ?

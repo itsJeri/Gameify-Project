@@ -57,7 +57,7 @@ function PathfinderScoreboard({ game, userScore }) {
             return (
               <tr key={score.id} id={isUserScore} className='table-data'>
                 <td>{ranking}</td>
-                <Td to={`/${user.username}`}>{user.username}</Td>
+                <Td to={`/profile/${user.username}`}>{user.username}</Td>
                 <td>{score.score}</td>
                 <td>{new Date(score.created_at).toLocaleDateString('en-GB')}</td>
               </tr>
