@@ -1,22 +1,31 @@
 Rails.application.routes.draw do
-  resources :scores, only: [:index, :show, :create]
-  resources :games, only: [:index, :show]
-  resources :users, only: [:index]
+  scope '/api/v1' do
+    resources :scores, only: [:index, :show, :create]
+    resources :games, only: [:index, :show]
+    resources :users, only: [:index]
 
-  # SESSIONS
-  post '/login', to: 'sessions#create'
-  delete '/logout', to: 'sessions#destroy'
+    LOGIN_API_ROUTE = '/login'
+    LOGOUT_API_ROUTE = '/logout'
+    SIGNUP_API_ROUTE = '/signup'
+    CURRENT_USER_API_ROUTE =  '/me'
+    USER_PROFILES_API_ROUTE = '/profiles'
+    LEADERBOARDS_API_ROUTE = '/leaderboards'
 
-  # USERS
-  post '/signup', to: 'users#create'
-  get '/me', to: 'users#show'
+    # SESSIONS
+    post LOGIN_API_ROUTE, to: 'sessions#create'
+    delete LOGOUT_API_ROUTE, to: 'sessions#destroy'
 
-  # USER STATS
-  get '/profiles/:id', to: 'users#show_stats'
+    # USERS
+    post SIGNUP_API_ROUTE, to: 'users#create'
+    get CURRENT_USER_API_ROUTE, to: 'users#show'
 
-  # LEADERBOARDS
-  get '/leaderboards', to: 'games#leaderboards_index'
-  get '/leaderboards/:id', to: 'games#leaderboards_show'
+    # USER STATS
+    get USER_PROFILES_API_ROUTE + '/:id', to: 'users#show_stats'
+
+    # LEADERBOARDS
+    get LEADERBOARDS_API_ROUTE, to: 'games#leaderboards_index'
+    get LEADERBOARDS_API_ROUTE + '/:id', to: 'games#leaderboards_show'
+  end
 
   # FOR DEPLOYMENT
   get '*path',

@@ -1,13 +1,12 @@
 import { useState, useEffect, useContext } from 'react';
 import { Context } from '../../../context/Context';
-
 import { Button } from 'react-bootstrap';
 import pathfinderLight from '../../../assets/pathfinder_light.png';
-
 import PathfinderGame from './PathfinderGame';
 import PathfinderSandbox from './PathfinderSandbox';
 import PathfinderScoreboard from './PathfinderScoreboard';
 import PathfinderVersus from './PathfinderVersus';
+import { SCORES_API_ENDPOINT } from '../../../constants/apiEndpoints';
 
 function Pathfinder({ game }) {
   const [page, setPage] = useState('PathfinderGame');
@@ -25,7 +24,7 @@ function Pathfinder({ game }) {
     if (!user) setErrors(['Sorry, you need to be signed in to submit a score.'])
     // Waits for POST to GET leaderboard with new score
     setIsSubmitting(true);
-    fetch('/scores', {
+    fetch(SCORES_API_ENDPOINT, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

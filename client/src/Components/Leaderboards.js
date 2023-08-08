@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Paginate from './Paginate';
 import Td from './Table/Td';
 import { Link } from 'react-router-dom';
+import { LEADERBOARDS_API_ENDPOINT } from '../constants/apiEndpoints';
 
 import { Tabs, Tab, Table } from 'react-bootstrap';
 
@@ -12,7 +13,7 @@ function Leaderboards() {
   const [scoresPerPage, setScoresPerPage] = useState(10);
 
   useEffect(() => {
-    fetch('/leaderboards')
+    fetch(LEADERBOARDS_API_ENDPOINT)
       .then(r => r.json())
       .then(games => {
         setLeaderboards(games);

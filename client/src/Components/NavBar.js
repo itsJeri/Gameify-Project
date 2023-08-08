@@ -2,8 +2,8 @@ import { useContext, useState, useEffect } from 'react';
 import { Context } from '../context/Context';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Button, Tooltip, OverlayTrigger } from 'react-bootstrap';
-
 import logo from '../assets/logo.png'
+import { LOGOUT_API_ENDPOINT } from '../constants/apiEndpoints';
 
 function NavBar() {
   const {user, setUser, navigate} = useContext(Context);
@@ -21,7 +21,7 @@ function NavBar() {
   }, [])
 
   function handleLogout() {
-    fetch('/logout', { method: 'DELETE' })
+    fetch(LOGOUT_API_ENDPOINT, { method: 'DELETE' })
       .then(r => {
         if (r.ok) {
           setUser(null);

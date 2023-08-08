@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from 'react';
 import { Context } from '../context/Context';
 import Graph from './Graph';
-
 import { Accordion } from 'react-bootstrap';
+import { PROFILES_API_ENDPOINT } from '../constants/apiEndpoints';
 
 function ProfilePage({ userId }) {
   const [user, setUser] = useState({});
@@ -11,7 +11,7 @@ function ProfilePage({ userId }) {
   const {games} = useContext(Context);
 
   useEffect(() => {
-    fetch(`/profiles/${userId}`)
+    fetch(`${PROFILES_API_ENDPOINT}/${userId}`)
       .then(r => r.json())
       .then(user => {
         setUser(user);

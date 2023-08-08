@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import { Context } from '../../context/Context';
 import { Link } from 'react-router-dom';
+import { LOGIN_API_ENDPOINT } from '../../constants/apiEndpoints';
 
 import { Form, Button } from 'react-bootstrap';
 import logo from '../../assets/logo.png'
@@ -30,7 +31,7 @@ function LoginForm() {
   function handleSubmit(e, loginInfo) {
     e.preventDefault();
     setIsLoading(true);
-    fetch('/login', {
+    fetch(LOGIN_API_ENDPOINT, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

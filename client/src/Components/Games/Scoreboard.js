@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import Paginate from '../Paginate';
 import Td from '../Table/Td';
-
 import { Table } from 'react-bootstrap';
+import { LEADERBOARDS_API_ENDPOINT } from '../../constants/apiEndpoints';
 
 function PathfinderScoreboard({ game, userScore }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -11,7 +11,7 @@ function PathfinderScoreboard({ game, userScore }) {
   const [scoresPerPage, setScoresPerPage] = useState(10);
 
   useEffect(() => {
-    fetch(`/leaderboards/${game.id}`)
+    fetch(`${LEADERBOARDS_API_ENDPOINT}/${game.id}`)
       .then(r => r.json())
       .then(game => {
         setLeaderboard(game);

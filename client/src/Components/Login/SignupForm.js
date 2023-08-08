@@ -1,9 +1,9 @@
 import { useState, useContext } from 'react';
 import { Context } from '../../context/Context';
 import { Link } from 'react-router-dom';
-
 import { Form, Button } from 'react-bootstrap';
 import logo from '../../assets/logo.png'
+import { SIGNUP_API_ENDPOINT } from '../../constants/apiEndpoints';
 
 function SignupForm() {
   const [signupForm, setSignupForm] = useState({
@@ -28,7 +28,7 @@ function SignupForm() {
     e.preventDefault();
     setErrors([]);
     setIsLoading(true);
-    fetch('/signup', {
+    fetch(SIGNUP_API_ENDPOINT, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

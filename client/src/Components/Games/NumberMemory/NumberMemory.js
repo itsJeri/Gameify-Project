@@ -1,12 +1,11 @@
 import { useState, useEffect, useContext } from 'react';
 import { Context } from '../../../context/Context';
-
 import './NumberMemory.css'
 import numberMemoryLight from '../../../assets/number_memory_light.png';
 import { Button } from 'react-bootstrap';
-
 import NumberMemoryGame from './NumberMemoryGame';
 import NumberMemoryScoreboard from './NumberMemoryScoreboard';
+import { SCORES_API_ENDPOINT } from '../../../constants/apiEndpoints';
 
 function NumberMemory({ game }) {
   const [page, setPage] = useState('NumberMemory');
@@ -24,7 +23,7 @@ function NumberMemory({ game }) {
     if (!user) setErrors(['Sorry, you need to be signed in to submit a score.'])
     // Waits for POST to GET leaderboard with new score
     setIsSubmitting(true);
-    fetch('/scores', {
+    fetch(SCORES_API_ENDPOINT, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

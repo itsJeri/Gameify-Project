@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { Context } from '../context/Context';
 import { Routes, Route } from 'react-router-dom';
-
 import LoginForm from './Login/LoginForm';
 import SignupForm from './Login/SignupForm';
 import MainPage from './MainPage';
@@ -10,6 +9,7 @@ import Pathfinder from './Games/Pathfinder/Pathfinder';
 import NumberMemory from './Games/NumberMemory/NumberMemory';
 import LeaderboardsPage from './LeaderboardsPage';
 import Spinner from 'react-bootstrap/Spinner';
+import { USERS_API_ENDPOINT, GAMES_API_ENDPOINT } from '../constants/apiEndpoints';
 
 function Gameify() {
   const [isLoading, setIsLoading] = useState(true);
@@ -17,7 +17,7 @@ function Gameify() {
   const {games, setGames, users, setUsers} = useContext(Context);
 
   useEffect(() => {
-    fetch('/users')
+    fetch(USERS_API_ENDPOINT)
       .then(r => {
         if (r.ok) {
           r.json()
@@ -27,7 +27,7 @@ function Gameify() {
         }
       })
       
-    fetch('/games')
+    fetch(GAMES_API_ENDPOINT)
       .then(r => {
         if (r.ok) {
           r.json()
